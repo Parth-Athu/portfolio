@@ -1,35 +1,14 @@
-import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import MagneticButton from "./MagneticButton";
+import { Mail, Phone, Linkedin } from "lucide-react";
+import SpotlightCard from "./SpotlightCard";
+
+const contactInfo = [
+  { Icon: Mail, label: "Email", value: "parthathu5@gmail.com", href: "mailto:parthathu5@gmail.com" },
+  { Icon: Phone, label: "Phone", value: "9909023108", href: "tel:9909023108" },
+  { Icon: Linkedin, label: "LinkedIn", value: "parth-athu", href: "https://www.linkedin.com/in/parth-athu" },
+];
 
 export default function ContactSection() {
-  const { toast } = useToast();
-  const [sending, setSending] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!buttonRef.current) return;
-    const rect = buttonRef.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    setOffset({ x: (e.clientX - cx) * 0.2, y: (e.clientY - cy) * 0.2 });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
-      (e.target as HTMLFormElement).reset();
-    }, 1200);
-  };
-
   return (
     <section id="contact" className="py-32 relative">
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
@@ -44,38 +23,38 @@ export default function ContactSection() {
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Get in Touch</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            Let's Build Something in the <span className="text-gradient">Cloud</span>
+            Let's <span className="text-gradient">Connect</span>
           </h2>
         </motion.div>
 
-        <motion.form
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          onSubmit={handleSubmit}
-          className="space-y-6 rounded-2xl border border-border/30 bg-card/40 backdrop-blur-2xl p-8"
-        >
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Input placeholder="Name" required className="bg-background/50 border-border/50 focus:border-primary" />
-            <Input type="email" placeholder="Email" required className="bg-background/50 border-border/50 focus:border-primary" />
-          </div>
-          <Textarea placeholder="Your message..." required rows={5} className="bg-background/50 border-border/50 focus:border-primary resize-none" />
-
-          <div className="flex justify-center" onMouseMove={handleMouseMove} onMouseLeave={() => setOffset({ x: 0, y: 0 })}>
-            <motion.button
-              ref={buttonRef}
-              type="submit"
-              disabled={sending}
-              animate={{ x: offset.x, y: offset.y }}
-              transition={{ type: "spring", stiffness: 350, damping: 15 }}
-              className="inline-flex h-12 px-8 items-center gap-2 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)] disabled:opacity-50"
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {contactInfo.map((item, i) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              target={item.label === "LinkedIn" ? "_blank" : undefined}
+              rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ scale: 1.03, y: -2 }}
+              className="block"
             >
-              {sending ? "Sending..." : "Send Message"}
-              <Send className="w-4 h-4" />
-            </motion.button>
-          </div>
-        </motion.form>
+              <SpotlightCard className="p-6 text-center group h-full">
+                <div className="flex justify-center mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] transition-all duration-500">
+                    <item.Icon className="w-5 h-5 text-primary" />
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
+                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors break-all">
+                  {item.value}
+                </p>
+              </SpotlightCard>
+            </motion.a>
+          ))}
+        </div>
       </div>
     </section>
   );

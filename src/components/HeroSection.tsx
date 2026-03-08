@@ -10,10 +10,8 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
       <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)] pointer-events-none" />
 
-      {/* Animated waves */}
       <HeroWaves />
 
-      {/* Glow orbs */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-cyan/5 blur-[120px] pointer-events-none" />
 
@@ -27,15 +25,15 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
               className="mb-6 space-y-2"
             >
-              <p className="text-primary font-medium tracking-widest uppercase text-sm">Hi, I'm Parth</p>
+              <p className="text-primary font-medium tracking-widest uppercase text-sm">Hi, I'm Parth Athu</p>
               <p className="text-muted-foreground text-sm flex items-center gap-2">
-                📍 Ahmedabad, India
+                📍 Ahmedabad, Gujarat, India
                 <span className="inline-flex items-center gap-1 text-xs text-muted-foreground/70 ml-2">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
                   </span>
-                  Available for work
+                  Open to opportunities
                 </span>
               </p>
             </motion.div>
@@ -59,9 +57,9 @@ export default function HeroSection() {
               transition={{ delay: 0.3, duration: 0.7 }}
               className="text-base text-muted-foreground max-w-md leading-relaxed mb-8"
             >
-              <span className="text-foreground font-medium">Cloud & Application Development Specialist</span> building{" "}
-              <span className="text-primary font-medium">scalable, automated</span> infrastructure
-              and <span className="text-primary font-medium">reliable cloud systems</span>.
+              <span className="text-foreground font-medium">Aspiring Cloud & DevOps Engineer</span> building{" "}
+              <span className="text-primary font-medium">scalable</span> and{" "}
+              <span className="text-primary font-medium">reliable cloud systems</span>.
             </motion.p>
 
             <motion.div
@@ -71,10 +69,10 @@ export default function HeroSection() {
               className="flex items-center gap-3"
             >
               <MagneticButton
-                href="#projects"
+                href="#timeline"
                 className="inline-flex h-12 px-7 items-center rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)]"
               >
-                View Projects
+                View Experience
               </MagneticButton>
               <MagneticButton
                 href="#contact"

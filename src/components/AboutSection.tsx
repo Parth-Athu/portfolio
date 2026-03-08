@@ -6,10 +6,9 @@ import parthPhoto from "@/assets/parth-photo.png";
 import SpotlightCard from "./SpotlightCard";
 import LiveTerminal from "./LiveTerminal";
 
-const techStack = [
-  "AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "Git",
-  "Linux", "Python", "Flask", "Networking", "Monitoring", "Automation",
-  "Cloud Architecture", "Infrastructure as Code",
+const skills = [
+  "AWS", "Docker", "Kubernetes", "CI/CD", "Linux",
+  "GitHub", "Artificial Intelligence", "Generative AI",
 ];
 
 export default function AboutSection() {
@@ -27,12 +26,10 @@ export default function AboutSection() {
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">About Me</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            Engineering Reliable Systems with{" "}
-            <span className="text-gradient">Cloud & Automation</span>
+            Aspiring <span className="text-gradient">Cloud & DevOps</span> Engineer
           </h2>
         </motion.div>
 
-        {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
           {/* Card 1: Intro */}
           <motion.div
@@ -43,13 +40,13 @@ export default function AboutSection() {
             <SpotlightCard className="p-6 h-full">
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
-                  Hi there, I'm <span className="text-primary">Parth</span>
+                  Hi, I'm <span className="text-primary">Parth Athu</span>
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Cloud & Application Development Specialist pursuing MSc IT. I build automated cloud infrastructure, CI/CD pipelines, and scalable backend systems.
+                  IMSc IT (Cloud & Application Development) student at JG University with a strong interest in Cloud computing and DevOps.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Focused on <span className="text-primary font-medium">Infrastructure as Code</span>, container orchestration, and <span className="text-primary font-medium">cloud automation</span>.
+                  Currently learning and working with <span className="text-primary font-medium">AWS, Docker, Kubernetes</span>, CI/CD pipelines, Git/GitHub, Linux, and <span className="text-primary font-medium">Generative AI</span> concepts.
                 </p>
               </div>
             </SpotlightCard>
@@ -66,16 +63,16 @@ export default function AboutSection() {
                 <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary/30 to-transparent blur-md" />
                 <img
                   src={parthPhoto}
-                  alt="Parth"
+                  alt="Parth Athu"
                   className="relative w-full h-full rounded-full object-cover border-2 border-primary/20"
                 />
               </div>
-              <p className="text-sm font-semibold text-foreground">Parth</p>
-              <p className="text-xs text-primary font-medium">Cloud & DevOps Engineer</p>
+              <p className="text-sm font-semibold text-foreground">Parth Athu</p>
+              <p className="text-xs text-primary font-medium">Aspiring Cloud & DevOps Engineer</p>
             </SpotlightCard>
           </motion.div>
 
-          {/* Card 3: Tech Stack */}
+          {/* Card 3: Skills */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -83,9 +80,9 @@ export default function AboutSection() {
           >
             <SpotlightCard className="p-6 h-full">
               <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Tech Stack</h3>
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Skills</h3>
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {techStack.map((t) => (
+                  {skills.map((t) => (
                     <motion.span
                       key={t}
                       whileHover={{ scale: 1.05, boxShadow: "0 0 12px hsl(var(--primary) / 0.3)" }}
@@ -109,7 +106,7 @@ export default function AboutSection() {
             <LiveTerminal />
           </motion.div>
 
-          {/* Card 5: Cloud Native + Automation */}
+          {/* Card 5: Goals */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -123,16 +120,16 @@ export default function AboutSection() {
                     <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Cloud Native</h3>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Building globally scalable systems with IaC, container orchestration, and serverless patterns.
+                    Understanding how scalable, reliable systems are built and deployed using cloud technologies.
                   </p>
                 </div>
                 <div className="border-t border-border/30 pt-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Zap className="w-4 h-4 text-primary" />
-                    <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Automation</h3>
+                    <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Seeking Opportunities</h3>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    CI/CD pipelines, monitoring systems, and Python tooling that eliminate manual work.
+                    Actively seeking internship and entry-level opportunities to learn, contribute, and grow as a Cloud & DevOps engineer.
                   </p>
                 </div>
               </div>
