@@ -14,20 +14,17 @@ export default function TimelineSection() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="timeline" className="py-32 relative" ref={containerRef}>
+    <section id="timeline" className="py-24 relative" ref={containerRef}>
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-16"
+          className="text-4xl md:text-5xl font-display font-bold tracking-tighter text-center mb-16"
         >
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Experience</p>
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            My <span className="text-gradient">Journey</span>
-          </h2>
-        </motion.div>
+          My Journey
+        </motion.h2>
 
         <div className="relative max-w-3xl mx-auto">
           <div className="absolute left-[20px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-[2px] bg-border">
@@ -37,16 +34,16 @@ export default function TimelineSection() {
           {timeline.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className={`relative flex items-start gap-8 mb-12 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
             >
-              <div className="absolute left-[14px] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary glow-purple z-10" />
+              <div className="absolute left-[14px] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary glow-teal z-10" />
               <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
                 <span className="text-xs text-primary font-medium tracking-widest">{item.year}</span>
-                <h3 className="text-xl font-display font-bold text-foreground mt-1">{item.title}</h3>
+                <h3 className="text-lg font-display font-bold text-foreground mt-1">{item.title}</h3>
                 <p className="text-sm text-primary/80 mt-0.5">{item.org}</p>
                 <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
               </div>

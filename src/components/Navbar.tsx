@@ -5,7 +5,6 @@ const links = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#timeline" },
-  { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -24,11 +23,11 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass py-3" : "py-5"
+        scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3" : "py-5"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <a href="#" className="text-xl font-display font-bold text-gradient">
+        <a href="#" className="text-sm font-bold text-foreground uppercase tracking-wider">
           Parth
         </a>
         <div className="hidden md:flex items-center gap-8">
@@ -46,7 +45,7 @@ export default function Navbar() {
           href="#contact"
           className="hidden md:inline-flex h-9 px-5 items-center rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
         >
-          Let's Talk
+          Contact
         </a>
       </div>
     </motion.nav>

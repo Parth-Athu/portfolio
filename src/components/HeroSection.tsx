@@ -1,99 +1,67 @@
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 import Scene from "./Scene";
-import parthPhoto from "@/assets/parth-photo.png";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 items-center pt-24">
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-6 z-10"
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-16">
+      <div className="container mx-auto px-6">
+        {/* Massive headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-display font-bold tracking-tighter leading-[0.85] text-foreground uppercase"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="relative w-20 h-20"
-          >
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary/40 via-primary/20 to-transparent blur-sm" />
-            <img
-              src={parthPhoto}
-              alt="Parth"
-              className="relative w-full h-full rounded-full object-cover border-2 border-primary/30"
-            />
-          </motion.div>
+          Cloud
+          <br />
+          <span className="text-gradient">Engineer</span>
+        </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-primary font-medium tracking-widest uppercase text-sm"
-          >
-            Cloud & DevOps Engineer
-          </motion.p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[0.9]">
-            <span className="block text-foreground">Building</span>
-            <span className="block text-gradient">Scalable</span>
-            <span className="block text-foreground">Cloud Infra</span>
-          </h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-lg text-muted-foreground max-w-md"
-          >
-            I design, automate and deploy reliable cloud systems using modern DevOps practices.
-          </motion.p>
+        <div className="grid lg:grid-cols-2 gap-8 mt-8 items-start">
+          {/* Left: Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex gap-4 pt-4"
+            transition={{ delay: 0.3, duration: 0.7 }}
+            className="space-y-6 z-10"
           >
-            <a
-              href="#projects"
-              className="inline-flex h-12 px-8 items-center rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors glow-purple"
-            >
-              View Projects
-            </a>
-            <a
+            <div className="text-sm text-muted-foreground uppercase tracking-wider">
+              <span className="text-foreground font-semibold">Based</span>
+              <br />
+              in
+              <br />
+              <span className="text-foreground font-semibold">India</span>
+            </div>
+
+            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+              With <span className="text-primary font-medium">strong expertise</span> in cloud infrastructure,
+              this portfolio showcases{" "}
+              <span className="text-primary font-medium">scalable, automated</span> and{" "}
+              <span className="text-primary font-medium">reliable systems</span>.
+            </p>
+
+            <motion.a
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
               href="#contact"
-              className="inline-flex h-12 px-8 items-center rounded-full border border-border text-foreground font-medium hover:bg-secondary transition-colors"
+              className="inline-flex h-10 px-6 items-center rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              Contact Me
-            </a>
+              ▶ Contact Me
+            </motion.a>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="h-[400px] lg:h-[600px]"
-        >
-          <Scene />
-        </motion.div>
+          {/* Right: 3D Scene */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="h-[350px] lg:h-[450px] -mt-8 lg:-mt-24"
+          >
+            <Scene />
+          </motion.div>
+        </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <ArrowDown className="w-5 h-5 text-muted-foreground" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
