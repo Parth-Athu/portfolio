@@ -3,16 +3,12 @@ import Lenis from "lenis";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import DevOpsMetrics from "@/components/DevOpsMetrics";
 import SkillsSection from "@/components/SkillsSection";
-import TechStackSection from "@/components/TechStackSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import GitHubSection from "@/components/GitHubSection";
-import CertificationsSection from "@/components/CertificationsSection";
+import LearningNotesSection from "@/components/LearningNotesSection";
 import TimelineSection from "@/components/TimelineSection";
-import LearningRoadmap from "@/components/LearningRoadmap";
-import DevOpsNotes from "@/components/DevOpsNotes";
-import LookingForSection from "@/components/LookingForSection";
+import CertificationsSection from "@/components/CertificationsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -41,16 +37,12 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <SectionReveal><AboutSection /></SectionReveal>
-      <SectionReveal><DevOpsMetrics /></SectionReveal>
       <SectionReveal><SkillsSection /></SectionReveal>
-      <SectionReveal><TechStackSection /></SectionReveal>
       <SectionReveal><ProjectsSection /></SectionReveal>
       <SectionReveal><GitHubSection /></SectionReveal>
-      <SectionReveal><LearningRoadmap /></SectionReveal>
-      <SectionReveal><DevOpsNotes /></SectionReveal>
+      <SectionReveal><LearningNotesSection /></SectionReveal>
       <SectionReveal><TimelineSection /></SectionReveal>
       <SectionReveal><CertificationsSection /></SectionReveal>
-      <SectionReveal><LookingForSection /></SectionReveal>
       <SectionReveal><ContactSection /></SectionReveal>
       <Footer />
     </div>
