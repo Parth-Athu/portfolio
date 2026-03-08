@@ -2,12 +2,19 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import SpotlightCard from "./SpotlightCard";
 
+const semesters = [
+  { label: "Sem 1", score: 7.6 },
+  { label: "Sem 2", score: 8.2 },
+  { label: "Sem 3", score: 7.9 },
+];
+
 const timeline = [
   {
     year: "2024 – 2027",
     title: "IMSc IT – Information Technology",
     org: "JG University",
     desc: "Pursuing Cloud & Application Development specialization. Learning AWS, Docker, Kubernetes, CI/CD pipelines, Git/GitHub, Linux, and Generative AI concepts.",
+    cgpa: "7.9 / 10",
     status: "Currently Pursuing",
     isCurrent: true,
   },
@@ -65,7 +72,30 @@ export default function TimelineSection() {
                   </div>
                   <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-sm text-primary/70 mt-0.5">{item.org}</p>
-                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
+                   <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm font-semibold text-primary mt-3">CGPA: {item.cgpa}</p>
+
+                  {/* Academic Progress */}
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <p className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3">Academic Progress</p>
+                    <div className="space-y-2.5">
+                      {semesters.map((sem) => (
+                        <div key={sem.label} className="flex items-center gap-3">
+                          <span className="text-xs text-muted-foreground w-10 shrink-0">{sem.label}</span>
+                          <div className="flex-1 h-2 rounded-full bg-muted/50 overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${(sem.score / 10) * 100}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, ease: "easeOut" }}
+                              className="h-full rounded-full bg-primary"
+                            />
+                          </div>
+                          <span className="text-xs font-semibold text-foreground w-7 text-right">{sem.score}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </SpotlightCard>
               </div>
             </motion.div>
