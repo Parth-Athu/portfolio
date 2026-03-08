@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Copy, Check, ExternalLink } from "lucide-react";
+import { Mail, Phone, Linkedin, Copy, Check, ExternalLink, Send } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
 const contactInfo = [
@@ -11,6 +11,8 @@ const contactInfo = [
 
 export default function ContactSection() {
   const [copied, setCopied] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleCopy = (e: React.MouseEvent, value: string) => {
     e.preventDefault();
@@ -18,6 +20,19 @@ export default function ContactSection() {
     navigator.clipboard.writeText(value);
     setCopied(value);
     setTimeout(() => setCopied(null), 2000);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Open mailto with form data
+    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
+    window.open(`mailto:parthathu5@gmail.com?subject=${subject}&body=${body}`);
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setForm({ name: "", email: "", message: "" });
+    }, 3000);
   };
 
   return (
@@ -41,7 +56,8 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* Contact Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {contactInfo.map((item, i) => (
             <motion.a
               key={item.label}
@@ -96,6 +112,79 @@ export default function ContactSection() {
             </motion.a>
           ))}
         </div>
+
+        {/* Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <SpotlightCard className="p-6 md:p-8">
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-6 text-center">
+              Send a Message
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="text-xs text-muted-foreground font-medium mb-1.5 block">Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Your name"
+                    className="w-full h-10 px-3 rounded-lg border border-border bg-secondary/50 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="text-xs text-muted-foreground font-medium mb-1.5 block">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="your@email.com"
+                    className="w-full h-10 px-3 rounded-lg border border-border bg-secondary/50 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="message" className="text-xs text-muted-foreground font-medium mb-1.5 block">Message</label>
+                <textarea
+                  id="message"
+                  required
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  placeholder="Your message..."
+                  className="w-full px-3 py-2.5 rounded-lg border border-border bg-secondary/50 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/20 transition-all resize-none"
+                />
+              </div>
+              <div className="flex justify-center pt-2">
+                <button
+                  type="submit"
+                  disabled={submitted}
+                  className="inline-flex h-11 px-8 items-center gap-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)] disabled:opacity-60"
+                >
+                  {submitted ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Sent!
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </SpotlightCard>
+        </motion.div>
       </div>
     </section>
   );
