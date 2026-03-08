@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Scene from "./Scene";
+import FloatingIcons from "./FloatingIcons";
 import HeroWaves from "./HeroWaves";
 import MagneticButton from "./MagneticButton";
 import { Github } from "lucide-react";
