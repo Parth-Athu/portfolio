@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Scene from "./Scene";
+import FloatingIcons from "./FloatingIcons";
 import HeroWaves from "./HeroWaves";
 import MagneticButton from "./MagneticButton";
 import { Github } from "lucide-react";
@@ -96,7 +96,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 0.2 }}
           className="flex-1 w-full lg:w-[50%] h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] relative"
         >
-          <Scene />
+          <FloatingIcons />
         </motion.div>
       </div>
     </section>
