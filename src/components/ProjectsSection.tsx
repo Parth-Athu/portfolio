@@ -4,27 +4,27 @@ import { Server } from "lucide-react";
 const projects = [
   {
     title: "Cloud Hosted Student Management System",
-    desc: "Full-stack student management system deployed on AWS EC2 with secure backend APIs, Nginx reverse proxy, and MySQL database.",
+    desc: "Full-stack application deployed on AWS EC2 with Flask REST API, Nginx reverse proxy, MySQL database, and automated backup scripts.",
     stack: ["AWS EC2", "Flask", "MySQL", "Nginx"],
   },
   {
     title: "CI/CD Pipeline Automation",
-    desc: "Automated build, test, and deployment pipeline reducing manual deployment time by 80%.",
+    desc: "End-to-end pipeline with GitHub Actions — automated testing, Docker image builds, ECR push, and ECS deployment reducing release time by 80%.",
     stack: ["GitHub Actions", "Docker", "AWS"],
   },
   {
-    title: "Dockerized Flask Application",
-    desc: "Containerized multi-service application architecture demonstrating service isolation and networking.",
+    title: "Dockerized Microservices Architecture",
+    desc: "Multi-container application with Docker Compose demonstrating service isolation, inter-service networking, and health monitoring.",
     stack: ["Docker", "Python", "Flask"],
   },
   {
-    title: "Kubernetes Deployment Demo",
-    desc: "Application deployed using Kubernetes with scalable pods, Helm charts, and health checks.",
+    title: "Kubernetes Cluster Deployment",
+    desc: "Production-grade K8s deployment with Helm charts, horizontal pod autoscaling, readiness probes, and rolling update strategies.",
     stack: ["Kubernetes", "Helm"],
   },
   {
-    title: "Infrastructure as Code Setup",
-    desc: "Provisioned complete cloud infrastructure using Terraform scripts with state management.",
+    title: "Infrastructure as Code with Terraform",
+    desc: "Complete AWS infrastructure provisioned via Terraform — VPC, subnets, security groups, EC2, RDS with remote state management in S3.",
     stack: ["Terraform", "AWS"],
   },
 ];
@@ -55,9 +55,11 @@ export default function ProjectsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ scale: 1.01, y: -2 }}
-              className="glass p-6 group hover:glow-border transition-all duration-500 cursor-pointer relative overflow-hidden"
+              className="relative group cursor-pointer overflow-hidden rounded-2xl border border-border/30 hover:border-primary/30 bg-card/40 backdrop-blur-xl p-6 transition-all duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.1)]"
             >
-              {/* Hover floating icon */}
+              {/* Gradient background on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
               <motion.div
                 className="absolute top-4 right-4 text-primary/0 group-hover:text-primary/20 transition-all duration-500"
                 animate={{ y: [0, -4, 0] }}
@@ -66,7 +68,7 @@ export default function ProjectsSection() {
                 <Server className="w-6 h-6" />
               </motion.div>
 
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div className="relative z-10 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div className="space-y-2 flex-1">
                   <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors">
                     {project.title}
@@ -77,7 +79,7 @@ export default function ProjectsSection() {
                   {project.stack.map((s) => (
                     <span
                       key={s}
-                      className="text-xs px-2 py-1 rounded bg-primary/10 text-primary border border-primary/20"
+                      className="text-xs px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 font-medium"
                     >
                       {s}
                     </span>
