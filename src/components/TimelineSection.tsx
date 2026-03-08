@@ -1,12 +1,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import SpotlightCard from "./SpotlightCard";
 
 const timeline = [
   {
     year: "2025",
     title: "Cloud & DevOps Engineer",
     org: "Self-learning & Real Projects",
-    desc: "Implementing GitOps workflows, building CI/CD pipelines with GitHub Actions, and deploying containerized apps on Kubernetes clusters.",
+    desc: "Implementing GitOps workflows, building CI/CD pipelines with GitHub Actions, and deploying containerized apps on Kubernetes.",
+    status: "Exploring Kubernetes & Terraform",
+    isCurrent: true,
   },
   {
     year: "2024",
@@ -45,7 +48,7 @@ export default function TimelineSection() {
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Experience</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            My <span className="text-gradient">Journey</span>
+            Engineering <span className="text-gradient">Roadmap</span>
           </h2>
         </motion.div>
 
@@ -64,11 +67,24 @@ export default function TimelineSection() {
               className={`relative flex items-start gap-8 mb-12 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
             >
               <div className="absolute left-[14px] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary glow-teal z-10" />
-              <div className={`ml-12 md:ml-0 md:w-1/2 glass p-5 hover:glow-border transition-all duration-500 group ${i % 2 === 0 ? "md:mr-auto md:pr-8 md:text-right" : "md:ml-auto md:pl-8"}`}>
-                <span className="text-xs text-primary font-semibold tracking-widest">{item.year}</span>
-                <h3 className="text-lg font-display font-bold text-foreground mt-1 group-hover:text-primary transition-colors">{item.title}</h3>
-                <p className="text-sm text-primary/70 mt-0.5">{item.org}</p>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
+              <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"}`}>
+                <SpotlightCard className={`p-5 group ${i % 2 === 0 ? "md:text-right" : ""}`}>
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className="text-xs text-primary font-semibold tracking-widest">{item.year}</span>
+                    {item.isCurrent && (
+                      <span className="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground bg-primary/10 border border-primary/20 rounded-full px-2 py-0.5">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
+                        </span>
+                        {item.status}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-sm text-primary/70 mt-0.5">{item.org}</p>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
+                </SpotlightCard>
               </div>
             </motion.div>
           ))}
