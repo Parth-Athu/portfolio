@@ -47,10 +47,10 @@ function LoadingFallback() {
 
 export default function Scene() {
   return (
-    <div className="w-full h-full min-h-[400px]">
+    <div className="w-full h-full min-h-[400px] pointer-events-none">
       <Suspense fallback={<LoadingFallback />}>
         <Canvas
-          style={{ background: "transparent" }}
+          style={{ background: "transparent", pointerEvents: "none" }}
           gl={{ alpha: true, antialias: true }}
         >
           <PerspectiveCamera makeDefault position={[0, 2, 5.5]} fov={40} />
