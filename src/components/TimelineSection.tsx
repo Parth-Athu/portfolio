@@ -2,12 +2,19 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import SpotlightCard from "./SpotlightCard";
 
+const semesters = [
+  { label: "Sem 1", score: 7.6 },
+  { label: "Sem 2", score: 8.2 },
+  { label: "Sem 3", score: 7.9 },
+];
+
 const timeline = [
   {
     year: "2024 – 2027",
     title: "IMSc IT – Information Technology",
     org: "JG University",
     desc: "Pursuing Cloud & Application Development specialization. Learning AWS, Docker, Kubernetes, CI/CD pipelines, Git/GitHub, Linux, and Generative AI concepts.",
+    cgpa: "7.9 / 10",
     status: "Currently Pursuing",
     isCurrent: true,
   },
