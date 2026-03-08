@@ -39,15 +39,25 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) =>
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
         <a
