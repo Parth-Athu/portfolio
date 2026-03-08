@@ -3,7 +3,9 @@ import Lenis from "lenis";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import DevOpsMetrics from "@/components/DevOpsMetrics";
 import ProjectsSection from "@/components/ProjectsSection";
+import CloudArchitecture from "@/components/CloudArchitecture";
 import DevOpsToolkit from "@/components/DevOpsToolkit";
 import TimelineSection from "@/components/TimelineSection";
 import ContactSection from "@/components/ContactSection";
@@ -33,7 +35,9 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <DevOpsMetrics />
       <ProjectsSection />
+      <CloudArchitecture />
       <DevOpsToolkit />
       <TimelineSection />
       <ContactSection />
