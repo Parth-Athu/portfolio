@@ -55,8 +55,8 @@ function DigitalHead() {
           roughness={0.05}
           distort={0.25}
           speed={1.5}
-          emissive="#7c3aed"
-          emissiveIntensity={0.4}
+          emissive="#0d9488"
+          emissiveIntensity={0.5}
         />
       </mesh>
 
