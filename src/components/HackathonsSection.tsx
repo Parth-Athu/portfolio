@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
-import { Trophy, Users } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Trophy, Users, X } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
+import hackathonCert from "@/assets/hackathon-certificate.png";
 
 const hackathons = [
   {
@@ -8,16 +10,31 @@ const hackathons = [
     title: "Hackathon Participation",
     desc: "Participated in 2 hackathons focused on technology innovation and team collaboration. Worked in teams to design and build solutions under time constraints.",
     highlights: ["2 Hackathons", "Team Collaboration", "Problem Solving"],
+    certificate: null,
   },
   {
     Icon: Trophy,
-    title: "Runner-Up Achievement",
-    desc: "Achieved Runner-Up position in a hackathon competition for developing a creative solution with strong teamwork and technical execution.",
-    highlights: ["Runner-Up", "Creative Solution", "Technical Excellence"],
+    title: "1st Runner-Up – Hackathon 2025",
+    desc: "Secured 1st Runner-Up position in Hackathon 2025, an Inter-School Innovation and Coding Competition organized by JG University, School of Computing.",
+    highlights: ["1st Runner-Up", "JG University", "Innovation & Coding"],
+    certificate: hackathonCert,
   },
 ];
 
 export default function HackathonsSection() {
+  const [viewCert, setViewCert] = useState<string | null>(null);
+
+  const handleClose = useCallback(() => setViewCert(null), []);
+
+  useEffect(() => {
+    if (!viewCert) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [viewCert, handleClose]);
+
   return (
     <section className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -54,18 +71,65 @@ export default function HackathonsSection() {
                   {item.title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed text-center mb-4">{item.desc}</p>
-                <div className="flex flex-wrap justify-center gap-1.5">
+                <div className="flex flex-wrap justify-center gap-1.5 mb-4">
                   {item.highlights.map((h) => (
                     <span key={h} className="text-xs px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 font-medium">
                       {h}
                     </span>
                   ))}
                 </div>
+                {item.certificate && (
+                  <div className="flex justify-center">
+                    <button
+                      onClick={() => setViewCert(item.certificate)}
+                      className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                    >
+                      <Trophy className="w-3 h-3" />
+                      View Certificate
+                    </button>
+                  </div>
+                )}
               </SpotlightCard>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {viewCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/85 backdrop-blur-sm"
+            onClick={handleClose}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-[800px] rounded-2xl border border-border bg-card overflow-hidden shadow-[0_0_80px_hsl(var(--primary)/0.1)] relative"
+            >
+              <button
+                onClick={handleClose}
+                className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:bg-secondary transition-colors"
+              >
+                <X className="w-4 h-4 text-muted-foreground" />
+              </button>
+              <div className="p-4">
+                <img
+                  src={viewCert}
+                  alt="Hackathon Certificate"
+                  className="w-full h-auto rounded-xl object-contain max-h-[70vh]"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
