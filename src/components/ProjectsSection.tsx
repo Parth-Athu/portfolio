@@ -3,12 +3,12 @@ import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
 
 const projects = [
-  { title: "Nebula Brand", category: "Brand Identity", span: "lg:col-span-2 lg:row-span-2", color: "from-primary/20 to-primary/5" },
-  { title: "Aether App", category: "UI/UX Design", span: "lg:col-span-1 lg:row-span-1", color: "from-[hsl(235,80%,60%)]/20 to-[hsl(235,80%,60%)]/5" },
-  { title: "Flux Motion", category: "Motion Design", span: "lg:col-span-1 lg:row-span-1", color: "from-primary/15 to-[hsl(235,80%,60%)]/10" },
-  { title: "Zenith Web", category: "Web Design", span: "lg:col-span-1 lg:row-span-2", color: "from-[hsl(235,80%,60%)]/20 to-primary/5" },
-  { title: "Prism 3D", category: "3D Design", span: "lg:col-span-1 lg:row-span-1", color: "from-primary/20 to-primary/10" },
-  { title: "Vortex Identity", category: "Art Direction", span: "lg:col-span-1 lg:row-span-1", color: "from-[hsl(235,80%,60%)]/15 to-primary/5" },
+  { title: "Cloud Hosted Student Mgmt System", category: "AWS EC2 · Flask · MySQL · Nginx", span: "lg:col-span-2 lg:row-span-2", color: "from-primary/20 to-primary/5" },
+  { title: "CI/CD Pipeline Automation", category: "GitHub Actions · Docker · AWS", span: "lg:col-span-1 lg:row-span-1", color: "from-[hsl(235,80%,60%)]/20 to-[hsl(235,80%,60%)]/5" },
+  { title: "Dockerized Microservices", category: "Docker · Python · Flask", span: "lg:col-span-1 lg:row-span-1", color: "from-primary/15 to-[hsl(235,80%,60%)]/10" },
+  { title: "Kubernetes Deployment", category: "Kubernetes · Helm", span: "lg:col-span-1 lg:row-span-2", color: "from-[hsl(235,80%,60%)]/20 to-primary/5" },
+  { title: "Infrastructure as Code", category: "Terraform · AWS", span: "lg:col-span-1 lg:row-span-1", color: "from-primary/20 to-primary/10" },
+  { title: "Monitoring Dashboard", category: "Prometheus · Grafana", span: "lg:col-span-1 lg:row-span-1", color: "from-[hsl(235,80%,60%)]/15 to-primary/5" },
 ];
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {

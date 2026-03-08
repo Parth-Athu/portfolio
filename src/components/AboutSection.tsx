@@ -3,9 +3,9 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 const skills = [
-  "UI/UX Design", "Brand Identity", "Motion Design", "3D Design",
-  "Figma", "After Effects", "Blender", "Photoshop",
-  "Typography", "Illustration", "Web Design", "Art Direction",
+  "AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "Git",
+  "Linux", "Python", "Flask", "Cloud Architecture", "Monitoring",
+  "Automation", "Networking", "Infrastructure as Code",
 ];
 
 export default function AboutSection() {
@@ -26,15 +26,13 @@ export default function AboutSection() {
           >
             <p className="text-primary font-medium tracking-widest uppercase text-sm">About</p>
             <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-              Designing with <span className="text-gradient">purpose</span> & passion
+              Engineering Reliable Systems with <span className="text-gradient">Cloud & Automation</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              With over 7 years of experience in creative design, I specialize in transforming complex ideas into elegant,
-              user-centered digital experiences. My work sits at the intersection of aesthetics and functionality.
+              I am a Cloud & DevOps enthusiast currently pursuing MSc in IT with specialization in Cloud & Application Development. I enjoy building automated cloud infrastructure, CI/CD pipelines, and scalable backend systems.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              From brand identities to immersive web experiences, I approach every project with a focus on storytelling,
-              attention to detail, and a deep understanding of the audience.
+              I focus on Infrastructure as Code, container orchestration, and cloud-native development. My goal is to engineer systems that are reliable, scalable, and easy to maintain.
             </p>
           </motion.div>
 

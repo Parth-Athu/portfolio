@@ -22,12 +22,12 @@ export default function HeroSection() {
             transition={{ delay: 0.3 }}
             className="text-primary font-medium tracking-widest uppercase text-sm"
           >
-            Creative Designer
+            Cloud & DevOps Engineer
           </motion.p>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[0.9]">
-            <span className="block text-foreground">Crafting</span>
-            <span className="block text-gradient">Digital</span>
-            <span className="block text-foreground">Experiences</span>
+            <span className="block text-foreground">Building</span>
+            <span className="block text-gradient">Scalable</span>
+            <span className="block text-foreground">Cloud Infra</span>
           </h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -35,7 +35,7 @@ export default function HeroSection() {
             transition={{ delay: 0.6 }}
             className="text-lg text-muted-foreground max-w-md"
           >
-            I design and build immersive digital experiences that blend aesthetics with functionality.
+            I design, automate, and deploy reliable cloud systems using modern DevOps practices.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -47,13 +47,13 @@ export default function HeroSection() {
               href="#projects"
               className="inline-flex h-12 px-8 items-center rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors glow-purple"
             >
-              View Work
+              View Projects
             </a>
             <a
-              href="#about"
+              href="#contact"
               className="inline-flex h-12 px-8 items-center rounded-full border border-border text-foreground font-medium hover:bg-secondary transition-colors"
             >
-              About Me
+              Contact Me
             </a>
           </motion.div>
         </motion.div>
