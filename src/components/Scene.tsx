@@ -50,13 +50,13 @@ function DigitalHead() {
       <mesh ref={innerRef}>
         <icosahedronGeometry args={[0.8, 4]} />
         <MeshDistortMaterial
-          color="#a855f7"
+          color="#14b8a6"
           metalness={0.95}
           roughness={0.05}
           distort={0.25}
           speed={1.5}
-          emissive="#7c3aed"
-          emissiveIntensity={0.4}
+          emissive="#0d9488"
+          emissiveIntensity={0.5}
         />
       </mesh>
 
@@ -64,11 +64,11 @@ function DigitalHead() {
       <mesh ref={outerRef} scale={1.15}>
         <icosahedronGeometry args={[0.8, 2]} />
         <meshStandardMaterial
-          color="#c084fc"
+          color="#a78bfa"
           wireframe
           transparent
-          opacity={0.3}
-          emissive="#a855f7"
+          opacity={0.25}
+          emissive="#8b5cf6"
           emissiveIntensity={0.3}
         />
       </mesh>
@@ -77,9 +77,9 @@ function DigitalHead() {
       <mesh ref={ringRef1} rotation={[Math.PI / 3, 0, 0]}>
         <torusGeometry args={[1.3, 0.015, 16, 100]} />
         <meshStandardMaterial
-          color="#06b6d4"
-          emissive="#06b6d4"
-          emissiveIntensity={1}
+          color="#2dd4bf"
+          emissive="#2dd4bf"
+          emissiveIntensity={1.2}
           transparent
           opacity={0.7}
         />
@@ -89,9 +89,9 @@ function DigitalHead() {
       <mesh ref={ringRef2} rotation={[0, Math.PI / 4, Math.PI / 6]}>
         <torusGeometry args={[1.5, 0.01, 16, 100]} />
         <meshStandardMaterial
-          color="#a855f7"
-          emissive="#a855f7"
-          emissiveIntensity={0.8}
+          color="#8b5cf6"
+          emissive="#8b5cf6"
+          emissiveIntensity={0.9}
           transparent
           opacity={0.5}
         />
@@ -253,11 +253,11 @@ export default function Scene() {
             <DigitalHead />
             <DevOpsNodes />
           </PresentationControls>
-          <ambientLight intensity={0.3} />
-          <pointLight position={[5, 5, 5]} intensity={0.8} color="#a855f7" />
-          <pointLight position={[-5, -5, 5]} intensity={0.5} color="#06b6d4" />
-          <pointLight position={[0, 3, 3]} intensity={0.4} color="#c084fc" />
-          <pointLight position={[0, -3, -2]} intensity={0.2} color="#6366f1" />
+          <ambientLight intensity={0.25} />
+          <pointLight position={[5, 5, 5]} intensity={0.8} color="#14b8a6" />
+          <pointLight position={[-5, -5, 5]} intensity={0.6} color="#8b5cf6" />
+          <pointLight position={[0, 3, 3]} intensity={0.4} color="#2dd4bf" />
+          <pointLight position={[0, -3, -2]} intensity={0.3} color="#a78bfa" />
         </Canvas>
       </Suspense>
     </div>

@@ -5,8 +5,10 @@ import Scene from "./Scene";
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
+      {/* Aurora background blobs */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full aurora-blob pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ filter: 'blur(120px)', opacity: 0.12, background: 'linear-gradient(135deg, hsl(270 75% 60%), hsl(235 70% 55%))' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ filter: 'blur(150px)', opacity: 0.08, background: 'linear-gradient(180deg, hsl(174 80% 46%), hsl(160 60% 45%))' }} />
 
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 items-center pt-24">
         {/* Left: Text */}
@@ -45,7 +47,7 @@ export default function HeroSection() {
           >
             <a
               href="#projects"
-              className="inline-flex h-12 px-8 items-center rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors glow-purple"
+              className="inline-flex h-12 px-8 items-center rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors glow-teal"
             >
               View Projects
             </a>
