@@ -6,7 +6,7 @@ import { Github } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 pb-0">
+    <section className="relative min-h-screen flex items-center overflow-visible pt-20 pb-16">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
       <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)] pointer-events-none" />
 
@@ -15,14 +15,14 @@ export default function HeroSection() {
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-cyan/5 blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10 flex flex-col flex-1">
-        {/* Text content - left aligned */}
-        <div className="max-w-3xl mb-2">
+      <div className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
+        {/* Left side - Text */}
+        <div className="flex-1 max-w-xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-4 space-y-2"
+            className="mb-6 space-y-2"
           >
             <p className="text-primary font-medium tracking-widest uppercase text-sm">Hi, I'm Parth Athu</p>
             <p className="text-muted-foreground text-sm flex items-center gap-2">
@@ -41,7 +41,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-display font-bold tracking-tighter leading-[0.9] text-foreground uppercase mb-4"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-display font-bold tracking-tighter leading-[0.9] text-foreground uppercase mb-6"
           >
             Automating
             <br />
@@ -54,7 +54,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="text-base text-muted-foreground max-w-md leading-relaxed mb-6"
+            className="text-base text-muted-foreground max-w-md leading-relaxed mb-8"
           >
             <span className="text-foreground font-medium">Aspiring Cloud & DevOps Engineer</span> building{" "}
             <span className="text-primary font-medium">scalable, automated cloud infrastructure</span> using{" "}
@@ -89,12 +89,12 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* 3D PC - full width, centered below text */}
+        {/* Right side - 3D PC Scene */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="w-full flex-1 min-h-[350px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] -mb-16"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="flex-1 w-full lg:w-[50%] h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] relative"
         >
           <Scene />
         </motion.div>

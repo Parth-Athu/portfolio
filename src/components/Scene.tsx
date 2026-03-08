@@ -55,10 +55,10 @@ function LoadingFallback() {
 
 export default function Scene() {
   return (
-    <div className="w-full h-full">
+    <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <Suspense fallback={<LoadingFallback />}>
         <Canvas
-          style={{ background: "transparent" }}
+          style={{ width: "100%", height: "100%" }}
           gl={{ alpha: true, antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.3 }}
         >
           <PerspectiveCamera makeDefault position={[0, 2, 5]} fov={42} />
@@ -68,22 +68,12 @@ export default function Scene() {
           <ambientLight intensity={0.7} />
           <directionalLight position={[5, 5, 5]} intensity={1.2} />
           <directionalLight position={[-3, 3, 5]} intensity={0.4} />
-          
-          {/* Key light above */}
           <pointLight position={[0, 4, 2]} intensity={1} color="#ffffff" />
-          
-          {/* Monitor screen glow */}
           <pointLight position={[0, 1.5, 1.5]} intensity={0.4} color="#60a5fa" distance={3} />
-          
-          {/* RGB PC case glow */}
           <pointLight position={[2, 1.2, 0]} intensity={0.8} color="#a855f7" distance={4} />
           <pointLight position={[2, 0.6, 0]} intensity={0.6} color="#06b6d4" distance={3} />
           <pointLight position={[2, 1.8, 0]} intensity={0.4} color="#ec4899" distance={3} />
-          
-          {/* Keyboard RGB glow */}
           <pointLight position={[0, 0.1, 1.2]} intensity={0.3} color="#14b8a6" distance={2} />
-          
-          {/* Fill */}
           <pointLight position={[-3, 2, 3]} intensity={0.5} color="#e2e8f0" />
           <pointLight position={[3, 2, 3]} intensity={0.3} color="#e2e8f0" />
           
