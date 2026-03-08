@@ -204,10 +204,10 @@ function DevOpsNodes() {
           new THREE.Vector3(...next.pos),
         ];
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const material = new THREE.LineBasicMaterial({ color: "#a855f7", transparent: true, opacity: 0.15 });
+        const lineObj = new THREE.Line(geometry, material);
         return (
-          <line key={`line-${i}`} geometry={geometry}>
-            <lineBasicMaterial color="#a855f7" transparent opacity={0.15} />
-          </line>
+          <primitive key={`line-${i}`} object={lineObj} />
         );
       })}
     </group>
