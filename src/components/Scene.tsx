@@ -12,7 +12,7 @@ function PCModel() {
     if (!groupRef.current) return;
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      pointer.x * 0.08 + 0.3,
+      pointer.x * 0.08,
       0.03
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
@@ -23,7 +23,7 @@ function PCModel() {
   });
 
   return (
-    <group ref={groupRef} scale={0.6} position={[0, -0.2, 0]} rotation={[0, 0.3, 0]}>
+    <group ref={groupRef} scale={0.42} position={[0, -0.1, 0]} rotation={[0, 0, 0]}>
       <primitive object={scene} />
     </group>
   );
