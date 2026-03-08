@@ -5,19 +5,19 @@ import MagneticButton from "./MagneticButton";
 
 const repos = [
   {
-    title: "Cloud Hosted Student Management System",
-    stack: ["AWS EC2", "Flask", "MySQL", "Nginx"],
-    repoUrl: "https://github.com/parth-athu",
+    title: "cloud-student-management-system",
+    stack: ["Python", "Flask", "AWS EC2", "MySQL"],
+    repoUrl: "https://github.com/Parth-Athu/cloud-student-management-system",
   },
   {
-    title: "CI/CD Pipeline Automation",
-    stack: ["GitHub Actions", "Docker", "AWS"],
-    repoUrl: "https://github.com/parth-athu",
+    title: "Techify-Hackathon-DesiRoots",
+    stack: ["TypeScript", "React", "Supabase", "Vercel"],
+    repoUrl: "https://github.com/Parth-Athu/Techify-Hackathon-DesiRoots",
   },
   {
-    title: "Dockerized Flask Application",
-    stack: ["Docker", "Python", "Flask"],
-    repoUrl: "https://github.com/parth-athu",
+    title: "Indian-Tales",
+    stack: ["TypeScript", "React", "MIT License"],
+    repoUrl: "https://github.com/Parth-Athu/Indian-Tales",
   },
 ];
 

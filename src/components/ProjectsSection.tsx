@@ -5,10 +5,10 @@ import SpotlightCard from "./SpotlightCard";
 
 const projects = [
   {
-    title: "Cloud Hosted Student Management System",
-    desc: "Deployed a full-stack student management system on AWS EC2 with a Flask backend and MySQL database.",
-    stack: ["AWS EC2", "Flask", "MySQL", "Nginx"],
-    repoUrl: "https://github.com/parth-athu",
+    title: "Cloud Student Management System",
+    desc: "Deployed a full-stack student management system on AWS EC2 with a Flask backend and MySQL database. Configured Nginx as reverse proxy.",
+    stack: ["Python", "Flask", "MySQL", "AWS EC2", "Nginx"],
+    repoUrl: "https://github.com/Parth-Athu/cloud-student-management-system",
     architecture: [
       "User sends request → Nginx reverse proxy",
       "Nginx routes to Flask backend (Gunicorn)",
@@ -18,29 +18,30 @@ const projects = [
     ],
   },
   {
-    title: "CI/CD Pipeline Automation",
-    desc: "Created an automated CI/CD pipeline that builds, tests, and deploys applications using GitHub Actions and Docker.",
-    stack: ["GitHub Actions", "Docker", "AWS"],
-    repoUrl: "https://github.com/parth-athu",
+    title: "DesiRoots – Tribal Art Marketplace",
+    desc: "Built a Tribal Art Marketplace during Hackathon 2025 at JG University. Secured 1st Runner-Up position. Deployed on Vercel.",
+    stack: ["TypeScript", "React", "Supabase", "Vercel"],
+    repoUrl: "https://github.com/Parth-Athu/Techify-Hackathon-DesiRoots",
+    liveUrl: "https://v0-tribal-art-marketplace.vercel.app",
     architecture: [
-      "Developer pushes code to GitHub",
-      "GitHub Actions triggers workflow",
-      "Docker image is built and tested",
-      "Image pushed to container registry",
-      "Deployment to AWS environment",
+      "User browses tribal art marketplace frontend",
+      "React frontend communicates with Supabase backend",
+      "Supabase handles auth, database & storage",
+      "Deployed on Vercel with GitHub Pages integration",
+      "10 deployments across production environments",
     ],
   },
   {
-    title: "Dockerized Flask Application",
-    desc: "Containerized a Python Flask application using Docker to ensure consistent development and deployment environments.",
-    stack: ["Docker", "Python", "Flask"],
-    repoUrl: "https://github.com/parth-athu",
+    title: "Indian Tales",
+    desc: "A TypeScript-based web application showcasing Indian cultural stories and folklore. Open-source with MIT license.",
+    stack: ["TypeScript", "React", "MIT License"],
+    repoUrl: "https://github.com/Parth-Athu/Indian-Tales",
     architecture: [
-      "Dockerfile defines the application environment",
-      "Docker Compose manages multi-container setup",
-      "Flask app runs inside isolated container",
-      "Port mapping exposes the application",
-      "Volumes persist data across restarts",
+      "Static site with React-based frontend",
+      "Content structured as story components",
+      "Responsive design for all devices",
+      "Open-source under MIT License",
+      "Community contributions via forks",
     ],
   },
 ];
@@ -92,7 +93,18 @@ export default function ProjectsSection() {
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                    {(project as any).liveUrl && (
+                      <a
+                        href={(project as any).liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Live Demo
+                      </a>
+                    )}
                     <button
                       onClick={() => setArchProject(project)}
                       className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
