@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const links = [
@@ -60,12 +60,22 @@ export default function Navbar() {
           )}
         </div>
 
-        <a
-          href="#contact"
-          className="hidden md:inline-flex h-9 px-5 items-center rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          Contact
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="https://github.com/Parth-Athu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 flex items-center justify-center rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
+          >
+            <Github className="w-4 h-4" />
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex h-9 px-5 items-center rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            Contact
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
