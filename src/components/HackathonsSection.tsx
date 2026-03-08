@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, Users, X, Github, ExternalLink, Camera } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import hackathonCert from "@/assets/hackathon-certificate.png";
-import hackathonTeam from "@/assets/hackathon-team.jpg";
+
 import hackathonGroup from "@/assets/hackathon-group.jpg";
 import hackathonTrophies from "@/assets/hackathon-trophies.jpg";
 import hackathonTrophy from "@/assets/hackathon-trophy.jpg";
