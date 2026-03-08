@@ -91,6 +91,14 @@ export default function Navbar() {
             <Github className="w-4 h-4" />
           </a>
           <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
+          >
+            Resume
+          </a>
+          <a
             href="#contact"
             className="inline-flex h-9 px-5 items-center rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
           >
@@ -140,6 +148,15 @@ export default function Navbar() {
                   </a>
                 )
               )}
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex h-9 px-5 items-center justify-center gap-1.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors w-fit"
+              >
+                Resume
+              </a>
               <a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}

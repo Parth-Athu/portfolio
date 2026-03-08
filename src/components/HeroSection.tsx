@@ -81,10 +81,21 @@ export default function HeroSection() {
             </MagneticButton>
             <MagneticButton
               href="https://github.com/parth-athu"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-12 px-7 items-center gap-2 rounded-full border border-border text-sm font-semibold text-foreground hover:bg-secondary hover:border-primary/30 transition-all duration-300"
             >
               <Github className="w-4 h-4" />
               View GitHub
+            </MagneticButton>
+            <MagneticButton
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              ariaLabel="Resume"
+              className="inline-flex h-12 px-7 items-center gap-2 rounded-full border border-border text-sm font-semibold text-foreground hover:bg-secondary hover:border-primary/30 transition-all duration-300"
+            >
+              Resume
             </MagneticButton>
           </motion.div>
         </div>

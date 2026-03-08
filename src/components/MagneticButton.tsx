@@ -5,9 +5,21 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   href: string;
   className?: string;
+  target?: string;
+  rel?: string;
+  download?: boolean | string;
+  ariaLabel?: string;
 }
 
-export default function MagneticButton({ children, href, className = "" }: MagneticButtonProps) {
+export default function MagneticButton({
+  children,
+  href,
+  className = "",
+  target,
+  rel,
+  download,
+  ariaLabel,
+}: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
@@ -23,6 +35,10 @@ export default function MagneticButton({ children, href, className = "" }: Magne
     <motion.a
       ref={ref}
       href={href}
+      target={target}
+      rel={rel}
+      download={download}
+      aria-label={ariaLabel}
       animate={{ x: offset.x, y: offset.y }}
       transition={{ type: "spring", stiffness: 350, damping: 15 }}
       onMouseMove={handleMouseMove}
