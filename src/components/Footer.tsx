@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Linkedin } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
 
 function MagneticIcon({ children, href, label }: { children: React.ReactNode; href: string; label: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -46,15 +46,28 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()}, Built by{" "}
-          <span className="text-primary font-medium">Parth Athu</span>
-        </p>
-        <div className="flex items-center gap-2">
-          <MagneticIcon href="https://www.linkedin.com/in/parth-athu" label="LinkedIn">
-            <Linkedin className="w-4 h-4" />
-          </MagneticIcon>
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()}{" "}
+              <span className="text-primary font-medium">Parth Athu</span>
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Cloud & DevOps Engineer
+            </p>
+          </div>
+          <p className="text-[10px] text-muted-foreground/60">
+            Built with React, TailwindCSS & Framer Motion
+          </p>
+          <div className="flex items-center gap-2">
+            <MagneticIcon href="https://www.linkedin.com/in/parth-athu" label="LinkedIn">
+              <Linkedin className="w-4 h-4" />
+            </MagneticIcon>
+            <MagneticIcon href="https://github.com/parth-athu" label="GitHub">
+              <Github className="w-4 h-4" />
+            </MagneticIcon>
+          </div>
         </div>
       </div>
     </footer>
