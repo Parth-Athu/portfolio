@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Users, X, Github, ExternalLink, Camera } from "lucide-react";
+import { Trophy, Users, X, Github, ExternalLink, Camera, ZoomIn, ZoomOut } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import hackathonCert from "@/assets/hackathon-certificate.png";
 
