@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import DevOpsMetrics from "@/components/DevOpsMetrics";
 import SkillsSection from "@/components/SkillsSection";
+import TechStackSection from "@/components/TechStackSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import GitHubSection from "@/components/GitHubSection";
 import CertificationsSection from "@/components/CertificationsSection";
