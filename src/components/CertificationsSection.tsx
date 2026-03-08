@@ -1,19 +1,35 @@
-import { motion } from "framer-motion";
-import { Award } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Award, X } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
 const certifications = [
   {
     title: "Gemini Certification for Students (K12)",
     issuer: "Google",
+    image: "https://img.freepik.com/premium-vector/certificate-template-elegant-dark-blue-with-gold-badge_1102902-321.jpg",
   },
   {
     title: "Amazon DevOps Guru – Getting Started",
     issuer: "Amazon Web Services",
+    image: "https://img.freepik.com/premium-vector/certificate-template-elegant-dark-blue-with-gold-badge_1102902-321.jpg",
   },
 ];
 
 export default function CertificationsSection() {
+  const [selected, setSelected] = useState<(typeof certifications)[0] | null>(null);
+
+  const handleClose = useCallback(() => setSelected(null), []);
+
+  useEffect(() => {
+    if (!selected) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [selected, handleClose]);
+
   return (
     <section id="certifications" className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -40,23 +56,75 @@ export default function CertificationsSection() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               whileHover={{ scale: 1.02, y: -2 }}
             >
-              <SpotlightCard className="p-6 h-full group">
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] transition-all duration-500">
-                    <Award className="w-5 h-5 text-primary" />
+              <button onClick={() => setSelected(cert)} className="w-full text-left">
+                <SpotlightCard className="p-6 h-full group cursor-pointer hover:border-primary/30 hover:shadow-[0_0_20px_hsl(var(--primary)/0.15)] transition-all duration-500">
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] transition-all duration-500">
+                      <Award className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-display font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                        {cert.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
+                      <p className="text-[10px] text-primary/60 mt-2 font-medium">Click to view certificate</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-display font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
-                      {cert.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
-                  </div>
-                </div>
-              </SpotlightCard>
+                </SpotlightCard>
+              </button>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/85 backdrop-blur-sm"
+            onClick={handleClose}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-[800px] rounded-2xl border border-border bg-card overflow-hidden shadow-[0_0_80px_hsl(var(--primary)/0.1)] relative"
+            >
+              <button
+                onClick={handleClose}
+                className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:bg-secondary transition-colors"
+              >
+                <X className="w-4 h-4 text-muted-foreground" />
+              </button>
+
+              <div className="p-4">
+                <img
+                  src={selected.image}
+                  alt={selected.title}
+                  className="w-full h-auto rounded-xl object-contain max-h-[60vh]"
+                />
+              </div>
+
+              <div className="px-6 pb-6 pt-2 border-t border-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Award className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-display font-bold text-foreground">{selected.title}</h3>
+                    <p className="text-xs text-muted-foreground">{selected.issuer}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
