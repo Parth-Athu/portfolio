@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import Scene from "./Scene";
 import HeroWaves from "./HeroWaves";
 import MagneticButton from "./MagneticButton";
+import { Github } from "lucide-react";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-16">
-      {/* Grid + scanline pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
       <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)] pointer-events-none" />
 
@@ -17,7 +17,6 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
-          {/* Left: Text Content */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -58,15 +57,15 @@ export default function HeroSection() {
               className="text-base text-muted-foreground max-w-md leading-relaxed mb-8"
             >
               <span className="text-foreground font-medium">Aspiring Cloud & DevOps Engineer</span> building{" "}
-              <span className="text-primary font-medium">scalable</span> and{" "}
-              <span className="text-primary font-medium">reliable cloud systems</span>.
+              <span className="text-primary font-medium">scalable, automated cloud infrastructure</span> using{" "}
+              AWS, Docker and CI/CD pipelines.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
-              className="flex items-center gap-3"
+              className="flex items-center gap-3 flex-wrap"
             >
               <MagneticButton
                 href="#timeline"
@@ -80,10 +79,16 @@ export default function HeroSection() {
               >
                 Contact Me
               </MagneticButton>
+              <MagneticButton
+                href="https://github.com/parth-athu"
+                className="inline-flex h-12 px-7 items-center gap-2 rounded-full border border-border text-sm font-semibold text-foreground hover:bg-secondary hover:border-primary/30 transition-all duration-300"
+              >
+                <Github className="w-4 h-4" />
+                View GitHub
+              </MagneticButton>
             </motion.div>
           </div>
 
-          {/* Right: 3D Scene */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
