@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
-import { Cloud, Container, Server, GitBranch, Terminal, Shield, Cpu } from "lucide-react";
+import { Cloud, Container, Shield, GitBranch, Terminal, Brain, Sparkles, RefreshCw } from "lucide-react";
 
-const tools = [
+const skills = [
   { name: "AWS", Icon: Cloud, color: "from-primary to-cyan" },
   { name: "Docker", Icon: Container, color: "from-cyan to-primary" },
   { name: "Kubernetes", Icon: Shield, color: "from-primary to-cyan" },
-  { name: "Terraform", Icon: Server, color: "from-cyan to-primary" },
-  { name: "GitHub Actions", Icon: GitBranch, color: "from-primary to-cyan" },
-  { name: "Linux", Icon: Terminal, color: "from-cyan to-primary" },
-  { name: "Python", Icon: Cpu, color: "from-primary to-cyan" },
+  { name: "CI/CD", Icon: RefreshCw, color: "from-cyan to-primary" },
+  { name: "Linux", Icon: Terminal, color: "from-primary to-cyan" },
+  { name: "GitHub", Icon: GitBranch, color: "from-cyan to-primary" },
+  { name: "AI", Icon: Brain, color: "from-primary to-cyan" },
+  { name: "Generative AI", Icon: Sparkles, color: "from-cyan to-primary" },
 ];
 
-export default function DevOpsToolkit() {
+export default function SkillsSection() {
   return (
-    <section id="toolkit" className="py-24 relative">
+    <section id="skills" className="py-24 relative">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -24,14 +25,14 @@ export default function DevOpsToolkit() {
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Tools & Technologies</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            DevOps <span className="text-gradient">Toolkit</span>
+            Skills & <span className="text-gradient">Toolkit</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-6 max-w-5xl mx-auto">
-          {tools.map((tool, i) => (
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 max-w-5xl mx-auto">
+          {skills.map((skill, i) => (
             <motion.div
-              key={tool.name}
+              key={skill.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -49,14 +50,15 @@ export default function DevOpsToolkit() {
                 className="relative"
               >
                 <div className="w-16 h-16 rounded-2xl glass flex items-center justify-center group-hover:glow-teal transition-all duration-500">
-                  <tool.Icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  <skill.Icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm" 
-                  style={{ background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-cyan)))` }} 
+                <div
+                  className="absolute -inset-1 rounded-2xl bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm"
+                  style={{ background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-cyan)))` }}
                 />
               </motion.div>
-              <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors font-medium">
-                {tool.name}
+              <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors font-medium text-center">
+                {skill.name}
               </span>
             </motion.div>
           ))}

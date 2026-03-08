@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 function MagneticIcon({ children, href, label }: { children: React.ReactNode; href: string; label: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -18,6 +18,8 @@ function MagneticIcon({ children, href, label }: { children: React.ReactNode; hr
     <motion.a
       ref={ref}
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label={label}
       animate={{ x: offset.x, y: offset.y }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -46,14 +48,11 @@ export default function Footer() {
 
       <div className="container mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()}, Engineered with ❤ by{" "}
-          <span className="text-primary font-medium">Parth</span>
+          © {new Date().getFullYear()}, Built by{" "}
+          <span className="text-primary font-medium">Parth Athu</span>
         </p>
         <div className="flex items-center gap-2">
-          <MagneticIcon href="#" label="GitHub">
-            <Github className="w-4 h-4" />
-          </MagneticIcon>
-          <MagneticIcon href="#" label="LinkedIn">
+          <MagneticIcon href="https://www.linkedin.com/in/parth-athu" label="LinkedIn">
             <Linkedin className="w-4 h-4" />
           </MagneticIcon>
         </div>

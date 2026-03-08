@@ -4,30 +4,12 @@ import SpotlightCard from "./SpotlightCard";
 
 const timeline = [
   {
-    year: "2025",
-    title: "Cloud & DevOps Engineer",
-    org: "Self-learning & Real Projects",
-    desc: "Implementing GitOps workflows, building CI/CD pipelines with GitHub Actions, and deploying containerized apps on Kubernetes.",
-    status: "Exploring Kubernetes & Terraform",
+    year: "2024 – 2027",
+    title: "IMSc IT – Information Technology",
+    org: "JG University",
+    desc: "Pursuing Cloud & Application Development specialization. Learning AWS, Docker, Kubernetes, CI/CD pipelines, Git/GitHub, Linux, and Generative AI concepts.",
+    status: "Currently Pursuing",
     isCurrent: true,
-  },
-  {
-    year: "2024",
-    title: "Deployed Full-Stack App on AWS",
-    org: "Academic Capstone Project",
-    desc: "Architected and deployed a Student Management System on EC2 with Nginx reverse proxy, Flask API, MySQL backend, and automated deployments.",
-  },
-  {
-    year: "2023",
-    title: "Started MSc IT — Cloud Specialization",
-    org: "Cloud & Application Development",
-    desc: "Deep dive into cloud architecture, IaC with Terraform, Docker containerization, and Kubernetes orchestration.",
-  },
-  {
-    year: "2022",
-    title: "BSc IT Graduate",
-    org: "University",
-    desc: "Built foundational skills in networking, Linux administration, backend development with Python/Flask, and database management.",
   },
 ];
 
@@ -46,9 +28,9 @@ export default function TimelineSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Experience</p>
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Education</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            Engineering <span className="text-gradient">Roadmap</span>
+            My <span className="text-gradient">Journey</span>
           </h2>
         </motion.div>
 
@@ -64,11 +46,11 @@ export default function TimelineSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative flex items-start gap-8 mb-12 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+              className="relative flex items-start gap-8 mb-12 md:flex-row"
             >
               <div className="absolute left-[14px] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary glow-teal z-10" />
-              <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"}`}>
-                <SpotlightCard className={`p-5 group ${i % 2 === 0 ? "md:text-right" : ""}`}>
+              <div className="ml-12 md:ml-0 md:w-1/2 md:mr-auto md:pr-8">
+                <SpotlightCard className="p-5 group">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className="text-xs text-primary font-semibold tracking-widest">{item.year}</span>
                     {item.isCurrent && (

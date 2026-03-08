@@ -3,14 +3,13 @@ import Lenis from "lenis";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import DevOpsMetrics from "@/components/DevOpsMetrics";
+import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import CloudArchitecture from "@/components/CloudArchitecture";
-import DevOpsToolkit from "@/components/DevOpsToolkit";
+import CertificationsSection from "@/components/CertificationsSection";
 import TimelineSection from "@/components/TimelineSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import FloatingBackground from "@/components/FloatingBackground";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const Index = () => {
   useEffect(() => {
@@ -31,15 +30,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
-      <FloatingBackground />
+      <AnimatedBackground />
       <Navbar />
       <HeroSection />
       <AboutSection />
-      <DevOpsMetrics />
-      <ProjectsSection />
-      <CloudArchitecture />
-      <DevOpsToolkit />
+      <SkillsSection />
       <TimelineSection />
+      <CertificationsSection />
+      <ProjectsSection />
       <ContactSection />
       <Footer />
     </div>
