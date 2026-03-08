@@ -43,6 +43,7 @@ const Index = () => {
       <SectionReveal><AboutSection /></SectionReveal>
       <SectionReveal><DevOpsMetrics /></SectionReveal>
       <SectionReveal><SkillsSection /></SectionReveal>
+      <SectionReveal><TechStackSection /></SectionReveal>
       <SectionReveal><ProjectsSection /></SectionReveal>
       <SectionReveal><GitHubSection /></SectionReveal>
       <SectionReveal><LearningRoadmap /></SectionReveal>
