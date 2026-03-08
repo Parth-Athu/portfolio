@@ -5,9 +5,9 @@ import SpotlightCard from "./SpotlightCard";
 
 const metrics = [
   { label: "Cloud Projects", value: 3, suffix: "+", Icon: Cloud, desc: "Built & Deployed" },
-  { label: "CI/CD Pipeline", value: 1, suffix: "", Icon: GitBranch, desc: "Pipeline Built" },
-  { label: "DevOps Tools", value: 5, suffix: "+", Icon: Wrench, desc: "Learned & Used" },
-  { label: "AWS Deployment", value: 1, suffix: "", Icon: Server, desc: "Cloud Deployed" },
+  { label: "CI/CD Pipelines", value: 1, suffix: "", Icon: GitBranch, desc: "Pipeline Built" },
+  { label: "DevOps Tools", value: 5, suffix: "+", Icon: Wrench, desc: "Hands-On Experience" },
+  { label: "AWS Deployments", value: 1, suffix: "", Icon: Server, desc: "Production Deployed" },
 ];
 
 function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
