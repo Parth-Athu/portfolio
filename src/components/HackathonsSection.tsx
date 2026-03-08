@@ -10,7 +10,6 @@ import hackathonTrophy from "@/assets/hackathon-trophy.jpg";
 import hackathonCoding from "@/assets/hackathon-coding.jpg";
 
 const photos = [
-  { src: hackathonTeam, alt: "Team with certificates and trophies" },
   { src: hackathonTrophies, alt: "1st Runner-Up trophies" },
   { src: hackathonCoding, alt: "Team during hackathon" },
   { src: hackathonGroup, alt: "Team at JG University" },
