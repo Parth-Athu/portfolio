@@ -8,6 +8,7 @@ import hackathonGroup from "@/assets/hackathon-group.jpg";
 import hackathonTrophies from "@/assets/hackathon-trophies.jpg";
 import hackathonTrophy from "@/assets/hackathon-trophy.jpg";
 import hackathonCoding from "@/assets/hackathon-coding.jpg";
+import hackathonTeam2025 from "@/assets/hackathon-team2025.jpg";
 import hackathon2026_1 from "@/assets/hackathon2026-1.jpg";
 import hackathon2026_2 from "@/assets/hackathon2026-2.jpg";
 import hackathon2026_3 from "@/assets/hackathon2026-3.jpg";
@@ -20,6 +21,7 @@ const photos2025 = [
   { src: hackathonCoding, alt: "Team during hackathon" },
   { src: hackathonGroup, alt: "Team at JG University" },
   { src: hackathonTrophy, alt: "JG University trophy" },
+  { src: hackathonTeam2025, alt: "Team at JG University" },
 ];
 
 const photos2026 = [
