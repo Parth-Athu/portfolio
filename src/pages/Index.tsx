@@ -5,8 +5,11 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import GitHubSection from "@/components/GitHubSection";
 import CertificationsSection from "@/components/CertificationsSection";
 import TimelineSection from "@/components/TimelineSection";
+import LearningRoadmap from "@/components/LearningRoadmap";
+import DevOpsNotes from "@/components/DevOpsNotes";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -35,9 +38,12 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+      <ProjectsSection />
+      <GitHubSection />
+      <LearningRoadmap />
+      <DevOpsNotes />
       <TimelineSection />
       <CertificationsSection />
-      <ProjectsSection />
       <ContactSection />
       <Footer />
     </div>
