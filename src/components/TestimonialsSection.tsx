@@ -8,7 +8,7 @@ const testimonials = [
     role: "Academic Mentor",
   },
   {
-    quote: "Strong understanding of infrastructure automation and system architecture. Impressive for a student engineer.",
+    quote: "Strong understanding of infrastructure automation and cloud deployment.",
     name: "Rahul Sharma",
     role: "Senior DevOps Engineer",
   },
