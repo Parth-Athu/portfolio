@@ -33,9 +33,9 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <a href="#" className="text-sm font-bold text-foreground uppercase tracking-wider">
+        <Link to="/" className="text-sm font-bold text-foreground uppercase tracking-wider">
           Parth Athu
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
