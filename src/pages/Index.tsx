@@ -41,7 +41,7 @@ const Index = () => {
       <SectionReveal><SkillsSection /></SectionReveal>
       <SectionReveal><ProjectsSection /></SectionReveal>
       <SectionReveal><GitHubSection /></SectionReveal>
-      <SectionReveal><HackathonsSection /></SectionReveal>
+      
       <SectionReveal><LearningNotesSection /></SectionReveal>
       <SectionReveal><TimelineSection /></SectionReveal>
       <SectionReveal><CertificationsSection /></SectionReveal>
