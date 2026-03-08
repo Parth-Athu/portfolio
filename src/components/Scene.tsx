@@ -10,10 +10,9 @@ function PCModel() {
 
   useFrame(() => {
     if (!groupRef.current) return;
-    // Subtle mouse parallax only - no base rotation so desk faces user directly
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      pointer.x * 0.1,
+      pointer.x * 0.08 + 0.3,
       0.03
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
@@ -24,7 +23,7 @@ function PCModel() {
   });
 
   return (
-    <group ref={groupRef} scale={0.9} position={[0, 0, 0]}>
+    <group ref={groupRef} scale={0.6} position={[0, -0.2, 0]} rotation={[0, 0.3, 0]}>
       <primitive object={scene} />
     </group>
   );
@@ -32,11 +31,9 @@ function PCModel() {
 
 function CameraSetup() {
   const { camera } = useThree();
-  
   useFrame(() => {
-    camera.lookAt(0, 1, 0);
+    camera.lookAt(0, 0.6, 0);
   });
-
   return null;
 }
 
@@ -56,28 +53,16 @@ export default function Scene() {
           style={{ background: "transparent" }}
           gl={{ alpha: true, antialias: true }}
         >
-          <PerspectiveCamera makeDefault position={[0, 2.5, 6]} fov={45} />
+          <PerspectiveCamera makeDefault position={[0, 2, 5.5]} fov={40} />
           <CameraSetup />
           <Environment preset="night" />
-          
-          {/* Soft ambient */}
           <ambientLight intensity={0.4} />
-          
-          {/* Above desk light */}
-          <pointLight position={[0, 4, 2]} intensity={0.7} color="#ffffff" />
-          
-          {/* RGB glow from PC case */}
-          <pointLight position={[2.5, 1.5, 0]} intensity={0.5} color="#14b8a6" distance={6} />
-          <pointLight position={[2.5, 0.8, 0]} intensity={0.3} color="#8b5cf6" distance={4} />
-          
-          {/* Fill lights */}
-          <pointLight position={[-3, 2, 3]} intensity={0.3} color="#06b6d4" />
-          <pointLight position={[3, 2, 3]} intensity={0.2} color="#14b8a6" />
-          
-          <spotLight position={[0, 6, 3]} angle={0.5} penumbra={1} intensity={0.4} color="#e2e8f0" />
-          
+          <pointLight position={[0, 3.5, 2]} intensity={0.6} color="#e2e8f0" />
+          <pointLight position={[2, 1, 0]} intensity={0.4} color="#14b8a6" distance={5} />
+          <pointLight position={[2, 0.5, 0]} intensity={0.2} color="#8b5cf6" distance={4} />
+          <pointLight position={[-2, 2, 3]} intensity={0.2} color="#06b6d4" />
           <PCModel />
-          <ContactShadows position={[0, -0.01, 0]} opacity={0.4} scale={14} blur={2} far={5} color="#0d9488" />
+          <ContactShadows position={[0, -0.2, 0]} opacity={0.35} scale={10} blur={2} far={4} color="#0d9488" />
         </Canvas>
       </Suspense>
     </div>
