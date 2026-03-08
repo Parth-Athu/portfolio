@@ -192,6 +192,13 @@ export default function HackathonsSection() {
               ))}
             </div>
           </SpotlightCard>
+        </motion.div>
+      </div>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {viewCert && (
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
