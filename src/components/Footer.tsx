@@ -1,10 +1,9 @@
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
 
 const socials = [
   { icon: Github, href: "#", label: "GitHub" },
-  { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Twitter, href: "#", label: "Twitter" },
 ];
 
 export default function Footer() {
@@ -12,7 +11,7 @@ export default function Footer() {
     <footer className="py-12 border-t border-border">
       <div className="container mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Portfolio. All rights reserved.
+          © {new Date().getFullYear()} Parth. All rights reserved.
         </p>
         <div className="flex items-center gap-4">
           {socials.map(({ icon: Icon, href, label }) => (

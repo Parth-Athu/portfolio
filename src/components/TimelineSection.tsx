@@ -2,11 +2,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const timeline = [
-  { year: "2024", title: "Senior Creative Director", org: "Studio Nebula", desc: "Leading brand strategy and creative direction for global clients." },
-  { year: "2022", title: "Lead Designer", org: "Flux Agency", desc: "Oversaw design systems and UI/UX for SaaS products." },
-  { year: "2020", title: "Visual Designer", org: "Prism Studio", desc: "Created brand identities and marketing campaigns for tech startups." },
-  { year: "2018", title: "Junior Designer", org: "PixelCraft", desc: "Started career designing print & digital media for local businesses." },
-  { year: "2017", title: "BFA in Graphic Design", org: "Rhode Island School of Design", desc: "Graduated with honors, specializing in interactive design." },
+  { year: "2025", title: "Cloud & DevOps Engineer (Student)", org: "Self-learning & Projects", desc: "Learning AWS, Docker, Kubernetes and CI/CD through hands-on projects." },
+  { year: "2024", title: "Built Cloud Hosted Student Mgmt System", org: "Academic Project", desc: "Deployed full-stack application on AWS EC2 with Flask, MySQL, and Nginx." },
+  { year: "2023", title: "Started MSc IT", org: "Cloud & Application Development", desc: "Specializing in cloud infrastructure, DevOps, and modern application architecture." },
+  { year: "2022", title: "BSc IT Graduate", org: "University", desc: "Built multiple backend and networking projects. Foundation in systems and programming." },
 ];
 
 export default function TimelineSection() {
@@ -31,7 +30,6 @@ export default function TimelineSection() {
         </motion.div>
 
         <div className="relative max-w-3xl mx-auto">
-          {/* Animated line */}
           <div className="absolute left-[20px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-[2px] bg-border">
             <motion.div
               className="w-full bg-primary origin-top"
@@ -50,7 +48,6 @@ export default function TimelineSection() {
                 i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              {/* Dot */}
               <div className="absolute left-[14px] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary glow-purple z-10" />
 
               <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>

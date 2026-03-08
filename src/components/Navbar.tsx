@@ -29,7 +29,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between px-6">
         <a href="#" className="text-xl font-display font-bold text-gradient">
-          Portfolio
+          Parth
         </a>
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (

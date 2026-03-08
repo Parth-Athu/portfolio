@@ -3,19 +3,19 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Their design work completely transformed our brand. The attention to detail and creative vision is unmatched.",
-    name: "Sarah Chen",
-    role: "CEO, Nebula Labs",
+    quote: "Parth built a clean and efficient cloud deployment pipeline that reduced manual work significantly.",
+    name: "Prof. Mehta",
+    role: "Academic Mentor",
   },
   {
-    quote: "Working with them was a game-changer. They brought ideas to life that we didn't even know we needed.",
-    name: "Marcus Rivera",
-    role: "Product Lead, Aether",
+    quote: "Strong understanding of infrastructure automation and system architecture. Impressive for a student engineer.",
+    name: "Rahul Sharma",
+    role: "Senior DevOps Engineer",
   },
   {
-    quote: "Exceptional talent. Every pixel was placed with intention, and the final result exceeded all expectations.",
-    name: "Emily Nakamura",
-    role: "Founder, Prism Studio",
+    quote: "His Docker and Kubernetes projects demonstrate real-world readiness and solid engineering fundamentals.",
+    name: "Anita Desai",
+    role: "Cloud Architect",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function TestimonialsSection() {
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Testimonials</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            What clients <span className="text-gradient">say</span>
+            What people <span className="text-gradient">say</span>
           </h2>
         </motion.div>
 
