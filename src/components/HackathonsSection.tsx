@@ -8,12 +8,27 @@ import hackathonGroup from "@/assets/hackathon-group.jpg";
 import hackathonTrophies from "@/assets/hackathon-trophies.jpg";
 import hackathonTrophy from "@/assets/hackathon-trophy.jpg";
 import hackathonCoding from "@/assets/hackathon-coding.jpg";
+import hackathon2026_1 from "@/assets/hackathon2026-1.jpg";
+import hackathon2026_2 from "@/assets/hackathon2026-2.jpg";
+import hackathon2026_3 from "@/assets/hackathon2026-3.jpg";
+import hackathon2026_4 from "@/assets/hackathon2026-4.jpg";
+import hackathon2026_5 from "@/assets/hackathon2026-5.jpg";
+import hackathon2026_6 from "@/assets/hackathon2026-6.jpg";
 
-const photos = [
+const photos2025 = [
   { src: hackathonTrophies, alt: "1st Runner-Up trophies" },
   { src: hackathonCoding, alt: "Team during hackathon" },
   { src: hackathonGroup, alt: "Team at JG University" },
   { src: hackathonTrophy, alt: "JG University trophy" },
+];
+
+const photos2026 = [
+  { src: hackathon2026_1, alt: "Team presenting project" },
+  { src: hackathon2026_2, alt: "Project presentation" },
+  { src: hackathon2026_3, alt: "Demo showcase" },
+  { src: hackathon2026_4, alt: "Menu page demo" },
+  { src: hackathon2026_5, alt: "Project on screen" },
+  { src: hackathon2026_6, alt: "Laptop with project" },
 ];
 
 const hackathons = [
