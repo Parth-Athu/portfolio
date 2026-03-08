@@ -27,8 +27,8 @@ const projects = [
       "User browses tribal art marketplace frontend",
       "React frontend communicates with Supabase backend",
       "Supabase handles auth, database & storage",
-      "Deployed on Vercel with GitHub Pages integration",
-      "10 deployments across production environments",
+      "Deployed on Vercel from a GitHub repository",
+      "Production updates shipped through repeatable deployment workflows",
     ],
   },
   {
@@ -99,6 +99,7 @@ export default function ProjectsSection() {
                         href={(project as any).liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`Open live demo for ${project.title}`}
                         className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
@@ -107,6 +108,7 @@ export default function ProjectsSection() {
                     )}
                     <button
                       onClick={() => setArchProject(project)}
+                      aria-label={`View architecture for ${project.title}`}
                       className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
                     >
                       <Layers className="w-3.5 h-3.5" />
@@ -116,6 +118,7 @@ export default function ProjectsSection() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Open GitHub repository for ${project.title}`}
                       className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
                     >
                       <Github className="w-3.5 h-3.5" />

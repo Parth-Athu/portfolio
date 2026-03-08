@@ -7,12 +7,15 @@ const certifications = [
   {
     title: "Gemini Certification for Students (K12)",
     issuer: "Google",
-    image: "https://img.freepik.com/premium-vector/certificate-template-elegant-dark-blue-with-gold-badge_1102902-321.jpg",
+    date: "January 26, 2026",
+    validThrough: "January 26, 2029",
+    image: "/certificates/gemini-certified-student-k12.png",
   },
   {
     title: "Amazon DevOps Guru – Getting Started",
     issuer: "Amazon Web Services",
-    image: "https://img.freepik.com/premium-vector/certificate-template-elegant-dark-blue-with-gold-badge_1102902-321.jpg",
+    date: "February 08, 2026",
+    image: "/certificates/amazon-devops-guru-getting-started.png",
   },
 ];
 
@@ -67,6 +70,10 @@ export default function CertificationsSection() {
                         {cert.title}
                       </h3>
                       <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
+                      <p className="text-[11px] text-muted-foreground/80 mt-1">Completed: {cert.date}</p>
+                      {cert.validThrough && (
+                        <p className="text-[11px] text-muted-foreground/70 mt-0.5">Valid Through: {cert.validThrough}</p>
+                      )}
                       <p className="text-[10px] text-primary/60 mt-2 font-medium">Click to view certificate</p>
                     </div>
                   </div>
@@ -118,6 +125,10 @@ export default function CertificationsSection() {
                   <div>
                     <h3 className="text-base font-display font-bold text-foreground">{selected.title}</h3>
                     <p className="text-xs text-muted-foreground">{selected.issuer}</p>
+                    <p className="text-[11px] text-muted-foreground/80 mt-1">Completed: {selected.date}</p>
+                    {selected.validThrough && (
+                      <p className="text-[11px] text-muted-foreground/70 mt-0.5">Valid Through: {selected.validThrough}</p>
+                    )}
                   </div>
                 </div>
               </div>

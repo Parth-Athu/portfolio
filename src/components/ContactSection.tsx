@@ -13,12 +13,15 @@ export default function ContactSection() {
   const [copied, setCopied] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleCopy = (e: React.MouseEvent, value: string) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!navigator.clipboard) return;
     navigator.clipboard.writeText(value);
     setCopied(value);
+    setStatusMessage(`${value} copied to clipboard.`);
     setTimeout(() => setCopied(null), 2000);
   };
 
@@ -29,6 +32,7 @@ export default function ContactSection() {
     const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
     window.open(`mailto:parthathu5@gmail.com?subject=${subject}&body=${body}`);
     setSubmitted(true);
+    setStatusMessage("Thanks! Your email client was opened with a pre-filled message.");
     setTimeout(() => {
       setSubmitted(false);
       setForm({ name: "", email: "", message: "" });
@@ -124,6 +128,9 @@ export default function ContactSection() {
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-6 text-center">
               Send a Message
             </h3>
+            <p className="text-xs text-muted-foreground text-center mb-4">
+              This opens your email app with your message pre-filled.
+            </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
@@ -131,6 +138,7 @@ export default function ContactSection() {
                   <input
                     id="name"
                     type="text"
+                    autoComplete="name"
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -143,6 +151,7 @@ export default function ContactSection() {
                   <input
                     id="email"
                     type="email"
+                    autoComplete="email"
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -157,6 +166,7 @@ export default function ContactSection() {
                   id="message"
                   required
                   rows={4}
+                  autoComplete="off"
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Your message..."
@@ -182,6 +192,7 @@ export default function ContactSection() {
                   )}
                 </button>
               </div>
+              <p className="sr-only" aria-live="polite">{statusMessage}</p>
             </form>
           </SpotlightCard>
         </motion.div>
