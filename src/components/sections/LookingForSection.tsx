@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
+import SpotlightCard from "../common/SpotlightCard";
 
 export default function LookingForSection() {
   return (

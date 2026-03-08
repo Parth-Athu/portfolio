@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import FloatingIcons from "./FloatingIcons";
-import HeroWaves from "./HeroWaves";
-import MagneticButton from "./MagneticButton";
+import FloatingIcons from "../hero/FloatingIcons";
+import HeroWaves from "../hero/HeroWaves";
+import MagneticButton from "../common/MagneticButton";
 import { Github } from "lucide-react";
 
 export default function HeroSection() {

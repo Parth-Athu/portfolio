@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import SkillsSection from "@/components/SkillsSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import GitHubSection from "@/components/GitHubSection";
-
-import LearningNotesSection from "@/components/LearningNotesSection";
-import TimelineSection from "@/components/TimelineSection";
-import CertificationsSection from "@/components/CertificationsSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
-import SectionReveal from "@/components/SectionReveal";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import AnimatedBackground from "@/components/layout/AnimatedBackground";
+import SectionReveal from "@/components/layout/SectionReveal";
+import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import GitHubSection from "@/components/sections/GitHubSection";
+import LearningNotesSection from "@/components/sections/LearningNotesSection";
+import TimelineSection from "@/components/sections/TimelineSection";
+import CertificationsSection from "@/components/sections/CertificationsSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 const Index = () => {
   useEffect(() => {

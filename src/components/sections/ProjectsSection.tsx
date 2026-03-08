@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, X, Layers } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
+import SpotlightCard from "../common/SpotlightCard";
 
 const projects = [
   {

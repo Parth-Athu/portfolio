@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Target, ArrowRight, FileText, ChevronDown } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
+import SpotlightCard from "../common/SpotlightCard";
 
 const currentlyLearning = [
   "Kubernetes", "Terraform", "AWS DevOps Tools", "Monitoring & Logging", "Infrastructure as Code",

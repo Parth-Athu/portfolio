@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
-import Navbar from "@/components/Navbar";
-import HackathonsSection from "@/components/HackathonsSection";
-import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import AnimatedBackground from "@/components/layout/AnimatedBackground";
+import HackathonsSection from "@/components/sections/HackathonsSection";
 
 const Hackathons = () => {
   useEffect(() => {

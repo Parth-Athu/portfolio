@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Cloud, GitBranch, Wrench, Server } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
+import SpotlightCard from "../common/SpotlightCard";
 
 const metrics = [
   { label: "Cloud Projects", value: 3, suffix: "+", Icon: Cloud, desc: "Built & Deployed" },

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, X } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
+import SpotlightCard from "../common/SpotlightCard";
 
 type Certification = {
   title: string;

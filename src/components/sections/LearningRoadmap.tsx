@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { BookOpen, ArrowRight, Target } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
+import SpotlightCard from "../common/SpotlightCard";
 
 const currentlyLearning = [
   "Kubernetes",

@@ -2,8 +2,8 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Globe, Zap, Cloud, GitBranch, Wrench, Server } from "lucide-react";
 import parthPhoto from "@/assets/parth-photo.png";
-import SpotlightCard from "./SpotlightCard";
-import LiveTerminal from "./LiveTerminal";
+import SpotlightCard from "../common/SpotlightCard";
+import LiveTerminal from "../effects/LiveTerminal";
 
 const skills = [
   "AWS", "Docker", "Kubernetes", "CI/CD", "Linux",

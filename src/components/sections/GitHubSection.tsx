@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
-import MagneticButton from "./MagneticButton";
+import SpotlightCard from "../common/SpotlightCard";
+import MagneticButton from "../common/MagneticButton";
 
 const repos = [
   {
