@@ -253,11 +253,11 @@ export default function Scene() {
             <DigitalHead />
             <DevOpsNodes />
           </PresentationControls>
-          <ambientLight intensity={0.3} />
-          <pointLight position={[5, 5, 5]} intensity={0.8} color="#a855f7" />
-          <pointLight position={[-5, -5, 5]} intensity={0.5} color="#06b6d4" />
-          <pointLight position={[0, 3, 3]} intensity={0.4} color="#c084fc" />
-          <pointLight position={[0, -3, -2]} intensity={0.2} color="#6366f1" />
+          <ambientLight intensity={0.25} />
+          <pointLight position={[5, 5, 5]} intensity={0.8} color="#14b8a6" />
+          <pointLight position={[-5, -5, 5]} intensity={0.6} color="#8b5cf6" />
+          <pointLight position={[0, 3, 3]} intensity={0.4} color="#2dd4bf" />
+          <pointLight position={[0, -3, -2]} intensity={0.3} color="#a78bfa" />
         </Canvas>
       </Suspense>
     </div>
