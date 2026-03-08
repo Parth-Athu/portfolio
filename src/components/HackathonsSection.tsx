@@ -8,12 +8,27 @@ import hackathonGroup from "@/assets/hackathon-group.jpg";
 import hackathonTrophies from "@/assets/hackathon-trophies.jpg";
 import hackathonTrophy from "@/assets/hackathon-trophy.jpg";
 import hackathonCoding from "@/assets/hackathon-coding.jpg";
+import hackathon2026_1 from "@/assets/hackathon2026-1.jpg";
+import hackathon2026_2 from "@/assets/hackathon2026-2.jpg";
+import hackathon2026_3 from "@/assets/hackathon2026-3.jpg";
+import hackathon2026_4 from "@/assets/hackathon2026-4.jpg";
+import hackathon2026_5 from "@/assets/hackathon2026-5.jpg";
+import hackathon2026_6 from "@/assets/hackathon2026-6.jpg";
 
-const photos = [
+const photos2025 = [
   { src: hackathonTrophies, alt: "1st Runner-Up trophies" },
   { src: hackathonCoding, alt: "Team during hackathon" },
   { src: hackathonGroup, alt: "Team at JG University" },
   { src: hackathonTrophy, alt: "JG University trophy" },
+];
+
+const photos2026 = [
+  { src: hackathon2026_1, alt: "Team presenting project" },
+  { src: hackathon2026_2, alt: "Project presentation" },
+  { src: hackathon2026_3, alt: "Demo showcase" },
+  { src: hackathon2026_4, alt: "Menu page demo" },
+  { src: hackathon2026_5, alt: "Project on screen" },
+  { src: hackathon2026_6, alt: "Laptop with project" },
 ];
 
 const hackathons = [
@@ -136,8 +151,36 @@ export default function HackathonsSection() {
               <Camera className="w-4 h-4 text-primary" />
               <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Hackathon 2025 Memories</h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {photos.map((photo, i) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {photos2025.map((photo, i) => (
+                <motion.button
+                  key={i}
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => setViewCert(photo.src)}
+                  className="overflow-hidden rounded-xl aspect-square cursor-pointer"
+                >
+                  <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover hover:brightness-110 transition-all duration-300" />
+                </motion.button>
+              ))}
+            </div>
+          </SpotlightCard>
+        </motion.div>
+
+        {/* Hackathon 2026 Photo Gallery */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-6 max-w-4xl mx-auto"
+        >
+          <SpotlightCard className="p-6">
+            <div className="flex items-center justify-center gap-2 mb-5">
+              <Camera className="w-4 h-4 text-primary" />
+              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Hackathon 2026 Memories</h3>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {photos2026.map((photo, i) => (
                 <motion.button
                   key={i}
                   whileHover={{ scale: 1.05 }}
