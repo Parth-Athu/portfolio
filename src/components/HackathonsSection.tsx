@@ -58,8 +58,57 @@ const hackathons = [
 
 export default function HackathonsSection() {
   const [viewCert, setViewCert] = useState<string | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0 });
+  const panStart = useRef({ x: 0, y: 0 });
 
-  const handleClose = useCallback(() => setViewCert(null), []);
+  const handleClose = useCallback(() => {
+    setViewCert(null);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, []);
+
+  const handleZoomIn = useCallback(() => setZoom((z) => Math.min(z + 0.5, 4)), []);
+  const handleZoomOut = useCallback(() => {
+    setZoom((z) => {
+      const newZoom = Math.max(z - 0.5, 1);
+      if (newZoom === 1) setPan({ x: 0, y: 0 });
+      return newZoom;
+    });
+  }, []);
+
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.stopPropagation();
+    if (e.deltaY < 0) {
+      setZoom((z) => Math.min(z + 0.25, 4));
+    } else {
+      setZoom((z) => {
+        const newZoom = Math.max(z - 0.25, 1);
+        if (newZoom === 1) setPan({ x: 0, y: 0 });
+        return newZoom;
+      });
+    }
+  }, []);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    if (zoom <= 1) return;
+    setIsDragging(true);
+    dragStart.current = { x: e.clientX, y: e.clientY };
+    panStart.current = { ...pan };
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  }, [zoom, pan]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDragging) return;
+    setPan({
+      x: panStart.current.x + (e.clientX - dragStart.current.x),
+      y: panStart.current.y + (e.clientY - dragStart.current.y),
+    });
+  }, [isDragging]);
+
+  const handlePointerUp = useCallback(() => setIsDragging(false), []);
 
   useEffect(() => {
     if (!viewCert) return;
