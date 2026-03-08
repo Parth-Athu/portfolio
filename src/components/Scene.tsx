@@ -12,7 +12,7 @@ function PCModel() {
     if (!groupRef.current) return;
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      pointer.x * 0.08 + 0.3,
+      pointer.x * 0.08,
       0.03
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
