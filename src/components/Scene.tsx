@@ -77,9 +77,9 @@ function DigitalHead() {
       <mesh ref={ringRef1} rotation={[Math.PI / 3, 0, 0]}>
         <torusGeometry args={[1.3, 0.015, 16, 100]} />
         <meshStandardMaterial
-          color="#06b6d4"
-          emissive="#06b6d4"
-          emissiveIntensity={1}
+          color="#2dd4bf"
+          emissive="#2dd4bf"
+          emissiveIntensity={1.2}
           transparent
           opacity={0.7}
         />
