@@ -50,7 +50,7 @@ function DigitalHead() {
       <mesh ref={innerRef}>
         <icosahedronGeometry args={[0.8, 4]} />
         <MeshDistortMaterial
-          color="#a855f7"
+          color="#14b8a6"
           metalness={0.95}
           roughness={0.05}
           distort={0.25}
