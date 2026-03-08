@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Server } from "lucide-react";
+import SpotlightCard from "./SpotlightCard";
 
 const projects = [
   {
@@ -55,37 +56,35 @@ export default function ProjectsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ scale: 1.01, y: -2 }}
-              className="relative group cursor-pointer overflow-hidden rounded-2xl border border-border/30 hover:border-primary/30 bg-card/40 backdrop-blur-xl p-6 transition-all duration-500 hover:shadow-[0_0_30px_hsl(var(--primary)/0.1)]"
             >
-              {/* Gradient background on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <SpotlightCard className="p-6 group cursor-pointer">
+                <motion.div
+                  className="absolute top-4 right-4 text-primary/0 group-hover:text-primary/20 transition-all duration-500"
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  <Server className="w-6 h-6" />
+                </motion.div>
 
-              <motion.div
-                className="absolute top-4 right-4 text-primary/0 group-hover:text-primary/20 transition-all duration-500"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <Server className="w-6 h-6" />
-              </motion.div>
-
-              <div className="relative z-10 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div className="space-y-2 flex-1">
-                  <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{project.desc}</p>
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                  <div className="space-y-2 flex-1">
+                    <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{project.desc}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 sm:justify-end shrink-0">
+                    {project.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="text-xs px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 font-medium"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-1.5 sm:justify-end shrink-0">
-                  {project.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="text-xs px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 font-medium"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

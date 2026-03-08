@@ -4,6 +4,7 @@ import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import MagneticButton from "./MagneticButton";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -16,10 +17,8 @@ export default function ContactSection() {
     const rect = buttonRef.current.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    setOffset({ x: (e.clientX - cx) * 0.15, y: (e.clientY - cy) * 0.15 });
+    setOffset({ x: (e.clientX - cx) * 0.2, y: (e.clientY - cy) * 0.2 });
   };
-
-  const handleMouseLeave = () => setOffset({ x: 0, y: 0 });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,7 +54,7 @@ export default function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
           onSubmit={handleSubmit}
-          className="space-y-6 glass rounded-2xl p-8"
+          className="space-y-6 rounded-2xl border border-border/30 bg-card/40 backdrop-blur-2xl p-8"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <Input placeholder="Name" required className="bg-background/50 border-border/50 focus:border-primary" />
@@ -63,14 +62,14 @@ export default function ContactSection() {
           </div>
           <Textarea placeholder="Your message..." required rows={5} className="bg-background/50 border-border/50 focus:border-primary resize-none" />
 
-          <div className="flex justify-center" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <div className="flex justify-center" onMouseMove={handleMouseMove} onMouseLeave={() => setOffset({ x: 0, y: 0 })}>
             <motion.button
               ref={buttonRef}
               type="submit"
               disabled={sending}
               animate={{ x: offset.x, y: offset.y }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="inline-flex h-12 px-8 items-center gap-2 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] disabled:opacity-50"
+              transition={{ type: "spring", stiffness: 350, damping: 15 }}
+              className="inline-flex h-12 px-8 items-center gap-2 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)] disabled:opacity-50"
             >
               {sending ? "Sending..." : "Send Message"}
               <Send className="w-4 h-4" />

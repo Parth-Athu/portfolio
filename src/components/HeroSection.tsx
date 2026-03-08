@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import Scene from "./Scene";
 import HeroWaves from "./HeroWaves";
+import MagneticButton from "./MagneticButton";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-16">
-      {/* Grid pattern */}
+      {/* Grid + scanline pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-      
+      <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)] pointer-events-none" />
+
       {/* Animated waves */}
       <HeroWaves />
 
@@ -19,7 +21,6 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left: Text Content */}
           <div>
-            {/* Intro line */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -29,10 +30,16 @@ export default function HeroSection() {
               <p className="text-primary font-medium tracking-widest uppercase text-sm">Hi, I'm Parth</p>
               <p className="text-muted-foreground text-sm flex items-center gap-2">
                 📍 Ahmedabad, India
+                <span className="inline-flex items-center gap-1 text-xs text-muted-foreground/70 ml-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                  </span>
+                  Available for work
+                </span>
               </p>
             </motion.div>
 
-            {/* Massive headline */}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -52,7 +59,7 @@ export default function HeroSection() {
               transition={{ delay: 0.3, duration: 0.7 }}
               className="text-base text-muted-foreground max-w-md leading-relaxed mb-8"
             >
-              Cloud & DevOps Engineer building{" "}
+              <span className="text-foreground font-medium">Cloud & Application Development Specialist</span> building{" "}
               <span className="text-primary font-medium">scalable, automated</span> infrastructure
               and <span className="text-primary font-medium">reliable cloud systems</span>.
             </motion.p>
@@ -63,22 +70,22 @@ export default function HeroSection() {
               transition={{ delay: 0.5, duration: 0.7 }}
               className="flex items-center gap-3"
             >
-              <a
+              <MagneticButton
                 href="#projects"
                 className="inline-flex h-12 px-7 items-center rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)]"
               >
                 View Projects
-              </a>
-              <a
+              </MagneticButton>
+              <MagneticButton
                 href="#contact"
                 className="inline-flex h-12 px-7 items-center rounded-full border border-border text-sm font-semibold text-foreground hover:bg-secondary hover:border-primary/30 transition-all duration-300"
               >
                 Contact Me
-              </a>
+              </MagneticButton>
             </motion.div>
           </div>
 
-          {/* Right: 3D Developer Desk Scene */}
+          {/* Right: 3D Scene */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
