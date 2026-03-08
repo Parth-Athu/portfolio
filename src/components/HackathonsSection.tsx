@@ -6,18 +6,24 @@ import hackathonCert from "@/assets/hackathon-certificate.png";
 
 const hackathons = [
   {
-    Icon: Users,
-    title: "Hackathon Participation",
-    desc: "Participated in 2 hackathons focused on technology innovation and team collaboration. Worked in teams to design and build solutions under time constraints.",
-    highlights: ["2 Hackathons", "Team Collaboration", "Problem Solving"],
-    certificate: null,
-  },
-  {
     Icon: Trophy,
     title: "1st Runner-Up – Hackathon 2025",
-    desc: "Secured 1st Runner-Up position in Hackathon 2025, an Inter-School Innovation and Coding Competition organized by JG University, School of Computing.",
+    desc: "Secured 1st Runner-Up position in Hackathon 2025, an Inter-School Innovation and Coding Competition organized by JG University, School of Computing. Built a Tribal Art Marketplace web app.",
     highlights: ["1st Runner-Up", "JG University", "Innovation & Coding"],
     certificate: hackathonCert,
+    liveUrl: "https://v0-tribal-art-marketplace.vercel.app",
+    repoUrl: "https://github.com/Parth-Athu/Techify-Hackathon-DesiRoots",
+    projectName: "DesiRoots – Tribal Art Marketplace",
+  },
+  {
+    Icon: Users,
+    title: "Hackathon 2026 Participant",
+    desc: "Participating in Hackathon 2026, continuing to build innovative solutions and strengthen problem-solving skills through competitive coding challenges.",
+    highlights: ["2026 Participant", "Team Collaboration", "Problem Solving"],
+    certificate: null,
+    liveUrl: null,
+    repoUrl: null,
+    projectName: null,
   },
 ];
 
