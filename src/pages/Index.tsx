@@ -13,6 +13,7 @@ import DevOpsNotes from "@/components/DevOpsNotes";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import SectionReveal from "@/components/SectionReveal";
 
 const Index = () => {
   useEffect(() => {
@@ -36,15 +37,15 @@ const Index = () => {
       <AnimatedBackground />
       <Navbar />
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <GitHubSection />
-      <LearningRoadmap />
-      <DevOpsNotes />
-      <TimelineSection />
-      <CertificationsSection />
-      <ContactSection />
+      <SectionReveal><AboutSection /></SectionReveal>
+      <SectionReveal><SkillsSection /></SectionReveal>
+      <SectionReveal><ProjectsSection /></SectionReveal>
+      <SectionReveal><GitHubSection /></SectionReveal>
+      <SectionReveal><LearningRoadmap /></SectionReveal>
+      <SectionReveal><DevOpsNotes /></SectionReveal>
+      <SectionReveal><TimelineSection /></SectionReveal>
+      <SectionReveal><CertificationsSection /></SectionReveal>
+      <SectionReveal><ContactSection /></SectionReveal>
       <Footer />
     </div>
   );
