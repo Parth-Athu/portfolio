@@ -23,7 +23,7 @@ function PCModel() {
   });
 
   return (
-    <group ref={groupRef} scale={0.6} position={[0, -0.2, 0]} rotation={[0, 0.3, 0]}>
+    <group ref={groupRef} scale={0.42} position={[0, -0.1, 0]} rotation={[0, 0, 0]}>
       <primitive object={scene} />
     </group>
   );
