@@ -5,7 +5,9 @@ import * as THREE from "three";
 
 function PCModel() {
   const { scene } = useGLTF("/models/scene.gltf");
-  
+  const groupRef = useRef<THREE.Group>(null);
+  const { pointer } = useThree();
+
   // Make materials more reflective/premium
   scene.traverse((child: any) => {
     if (child.isMesh && child.material) {
@@ -15,8 +17,22 @@ function PCModel() {
     }
   });
 
+  useFrame(() => {
+    if (!groupRef.current) return;
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(
+      groupRef.current.rotation.y,
+      pointer.x * 0.12,
+      0.02
+    );
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(
+      groupRef.current.rotation.x,
+      pointer.y * 0.05,
+      0.02
+    );
+  });
+
   return (
-    <group scale={0.8} position={[0, -0.3, 0]} rotation={[0, 0, 0]}>
+    <group ref={groupRef} scale={0.8} position={[0, -0.3, 0]}>
       <primitive object={scene} />
     </group>
   );
@@ -48,31 +64,15 @@ export default function Scene() {
         >
           <PerspectiveCamera makeDefault position={[0, 2.2, 6]} fov={45} />
           <CameraSetup />
-          
-          {/* Environment for realistic reflections */}
           <Environment preset="city" />
-          
-          {/* Ambient fill */}
           <ambientLight intensity={0.6} />
-          
-          {/* Main directional light */}
-          <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
-          
-          {/* Above desk key light */}
+          <directionalLight position={[5, 5, 5]} intensity={1} />
           <pointLight position={[0, 3, 2]} intensity={1.2} color="#ffffff" />
-          
-          {/* RGB glow from PC case fans */}
           <pointLight position={[2.2, 1.2, -0.3]} intensity={0.6} color="#14b8a6" distance={4} />
           <pointLight position={[2.2, 0.6, -0.3]} intensity={0.4} color="#8b5cf6" distance={3} />
           <pointLight position={[2.2, 1.8, -0.3]} intensity={0.3} color="#06b6d4" distance={3} />
-          
-          {/* Keyboard glow */}
           <pointLight position={[0, 0.3, 1]} intensity={0.3} color="#14b8a6" distance={2} />
-          
-          {/* Fill lights */}
           <pointLight position={[-3, 2, 3]} intensity={0.4} color="#e2e8f0" />
-          <pointLight position={[3, 2, 3]} intensity={0.3} color="#e2e8f0" />
-          
           <PCModel />
           <ContactShadows position={[0, -0.3, 0]} opacity={0.5} scale={12} blur={2} far={5} color="#0a0a0a" />
         </Canvas>
