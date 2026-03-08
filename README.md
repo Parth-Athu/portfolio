@@ -10,7 +10,7 @@
 Welcome to my personal **Cloud and DevOps portfolio website**.
 This project showcases my cloud deployments, automation workflows, hackathon journey, and engineering growth.
 
-- 🌐 Live Portfolio: `add your deployed link here`
+- 🌐 Live Portfolio: `https://parth-athu-portfolio.vercel.app`
 - 💻 GitHub Profile: `https://github.com/Parth-Athu`
 
 ## 🖼️ Portfolio Preview
