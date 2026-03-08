@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const links = [
   { label: "About", href: "#about" },
@@ -8,6 +9,7 @@ const links = [
   { label: "Education", href: "#timeline" },
   { label: "Certifications", href: "#certifications" },
   { label: "Projects", href: "#projects" },
+  { label: "Hackathons", href: "/hackathons" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -31,21 +33,31 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <a href="#" className="text-sm font-bold text-foreground uppercase tracking-wider">
+        <Link to="/" className="text-sm font-bold text-foreground uppercase tracking-wider">
           Parth Athu
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) =>
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
         <a
@@ -76,16 +88,27 @@ export default function Navbar() {
             className="md:hidden overflow-hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-3">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {links.map((link) =>
+                link.href.startsWith("/") ? (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
               <a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}
