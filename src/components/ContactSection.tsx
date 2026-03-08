@@ -16,9 +16,7 @@ export default function ContactSection() {
     const rect = buttonRef.current.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) * 0.15;
-    const dy = (e.clientY - cy) * 0.15;
-    setOffset({ x: dx, y: dy });
+    setOffset({ x: (e.clientX - cx) * 0.15, y: (e.clientY - cy) * 0.15 });
   };
 
   const handleMouseLeave = () => setOffset({ x: 0, y: 0 });
@@ -47,7 +45,7 @@ export default function ContactSection() {
         >
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Get in Touch</p>
           <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tighter">
-            Let's <span className="text-gradient">create</span> together
+            Let's Build Something in the <span className="text-gradient">Cloud</span>
           </h2>
         </motion.div>
 
@@ -72,7 +70,7 @@ export default function ContactSection() {
               disabled={sending}
               animate={{ x: offset.x, y: offset.y }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="inline-flex h-12 px-8 items-center gap-2 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors glow-purple disabled:opacity-50"
+              className="inline-flex h-12 px-8 items-center gap-2 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] disabled:opacity-50"
             >
               {sending ? "Sending..." : "Send Message"}
               <Send className="w-4 h-4" />
