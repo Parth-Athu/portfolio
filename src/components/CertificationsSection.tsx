@@ -3,24 +3,70 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Award, X } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
+type Certification = {
+  title: string;
+  issuer: string;
+  date: string;
+  validThrough?: string;
+  imageCandidates: string[];
+};
+
+function CertificateImage({
+  imageCandidates,
+  alt,
+  className,
+}: {
+  imageCandidates: string[];
+  alt: string;
+  className: string;
+}) {
+  const [index, setIndex] = useState(0);
+  const src = imageCandidates[index] || "/placeholder.svg";
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      onError={() => {
+        if (index < imageCandidates.length - 1) {
+          setIndex(index + 1);
+        }
+      }}
+    />
+  );
+}
+
 const certifications = [
   {
     title: "Gemini Certification for Students (K12)",
     issuer: "Google",
     date: "January 26, 2026",
     validThrough: "January 26, 2029",
-    image: "/certificates/gemini-certified-student-k12.png",
+    imageCandidates: [
+      "/certificates/gemini-certified-student-k12.png",
+      "/certificates/gemini-certified-student-k12.jpg",
+      "/certificates/gemini-certified-student-k12.jpeg",
+      "/certificates/gemini-certificate.png",
+      "/certificates/gemini-certificate.jpg",
+    ],
   },
   {
     title: "Amazon DevOps Guru – Getting Started",
     issuer: "Amazon Web Services",
     date: "February 08, 2026",
-    image: "/certificates/amazon-devops-guru-getting-started.png",
+    imageCandidates: [
+      "/certificates/amazon-devops-guru-getting-started.png",
+      "/certificates/amazon-devops-guru-getting-started.jpg",
+      "/certificates/amazon-devops-guru-getting-started.jpeg",
+      "/certificates/amazon-certificate.png",
+      "/certificates/amazon-certificate.jpg",
+    ],
   },
-];
+] as Certification[];
 
 export default function CertificationsSection() {
-  const [selected, setSelected] = useState<(typeof certifications)[0] | null>(null);
+  const [selected, setSelected] = useState<Certification | null>(null);
 
   const handleClose = useCallback(() => setSelected(null), []);
 
@@ -61,11 +107,19 @@ export default function CertificationsSection() {
             >
               <button onClick={() => setSelected(cert)} className="w-full text-left">
                 <SpotlightCard className="p-6 h-full group cursor-pointer hover:border-primary/30 hover:shadow-[0_0_20px_hsl(var(--primary)/0.15)] transition-all duration-500">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] transition-all duration-500">
-                      <Award className="w-5 h-5 text-primary" />
+                  <div className="space-y-4">
+                    <div className="rounded-xl border border-border/70 overflow-hidden bg-secondary/40">
+                      <CertificateImage
+                        imageCandidates={cert.imageCandidates}
+                        alt={cert.title}
+                        className="w-full h-36 object-cover"
+                      />
                     </div>
-                    <div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-all duration-500">
+                        <Award className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
                       <h3 className="text-sm font-display font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                         {cert.title}
                       </h3>
@@ -75,6 +129,7 @@ export default function CertificationsSection() {
                         <p className="text-[11px] text-muted-foreground/70 mt-0.5">Valid Through: {cert.validThrough}</p>
                       )}
                       <p className="text-[10px] text-primary/60 mt-2 font-medium">Click to view certificate</p>
+                      </div>
                     </div>
                   </div>
                 </SpotlightCard>
@@ -110,8 +165,8 @@ export default function CertificationsSection() {
               </button>
 
               <div className="p-4">
-                <img
-                  src={selected.image}
+                <CertificateImage
+                  imageCandidates={selected.imageCandidates}
                   alt={selected.title}
                   className="w-full h-auto rounded-xl object-contain max-h-[60vh]"
                 />
