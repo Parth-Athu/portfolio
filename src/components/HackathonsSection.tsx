@@ -84,15 +84,26 @@ export default function HackathonsSection() {
                     </span>
                   ))}
                 </div>
-                {item.certificate && (
-                  <div className="flex justify-center">
-                    <button
-                      onClick={() => setViewCert(item.certificate)}
-                      className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
-                    >
-                      <Trophy className="w-3 h-3" />
-                      View Certificate
-                    </button>
+                {(item.liveUrl || item.repoUrl || item.certificate) && (
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {item.liveUrl && (
+                      <a href={item.liveUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all">
+                        <ExternalLink className="w-3 h-3" />Live Demo
+                      </a>
+                    )}
+                    {item.repoUrl && (
+                      <a href={item.repoUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all">
+                        <Github className="w-3 h-3" />GitHub
+                      </a>
+                    )}
+                    {item.certificate && (
+                      <button onClick={() => setViewCert(item.certificate)}
+                        className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all">
+                        <Trophy className="w-3 h-3" />Certificate
+                      </button>
+                    )}
                   </div>
                 )}
               </SpotlightCard>
