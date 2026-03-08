@@ -17,19 +17,19 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 
   useEffect(() => {
     if (!isInView) return;
-    let start = 0;
-    const duration = 2;
-    const increment = target / (duration * 60);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 1000 / 60);
-    return () => clearInterval(timer);
+    const duration = 1000; // 1 second
+    const startTime = performance.now();
+    
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    
+    requestAnimationFrame(animate);
   }, [isInView, target]);
 
   return (
