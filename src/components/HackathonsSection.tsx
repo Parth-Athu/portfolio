@@ -1,8 +1,21 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Users, X, Github, ExternalLink } from "lucide-react";
+import { Trophy, Users, X, Github, ExternalLink, Camera } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import hackathonCert from "@/assets/hackathon-certificate.png";
+import hackathonTeam from "@/assets/hackathon-team.jpg";
+import hackathonGroup from "@/assets/hackathon-group.jpg";
+import hackathonTrophies from "@/assets/hackathon-trophies.jpg";
+import hackathonTrophy from "@/assets/hackathon-trophy.jpg";
+import hackathonCoding from "@/assets/hackathon-coding.jpg";
+
+const photos = [
+  { src: hackathonTeam, alt: "Team with certificates and trophies" },
+  { src: hackathonTrophies, alt: "1st Runner-Up trophies" },
+  { src: hackathonCoding, alt: "Team during hackathon" },
+  { src: hackathonGroup, alt: "Team at JG University" },
+  { src: hackathonTrophy, alt: "JG University trophy" },
+];
 
 const hackathons = [
   {
