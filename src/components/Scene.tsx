@@ -8,17 +8,21 @@ function PCModel() {
   const groupRef = useRef<THREE.Group>(null);
   const { pointer } = useThree();
 
-  useFrame(() => {
+  useFrame((state) => {
     if (!groupRef.current) return;
+    const t = state.clock.elapsedTime;
+    // Smooth continuous idle rotation + mouse follow
+    const targetY = pointer.x * 0.12 + Math.sin(t * 0.3) * 0.05;
+    const targetX = pointer.y * 0.05 + Math.cos(t * 0.2) * 0.02;
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      pointer.x * 0.08,
-      0.03
+      targetY,
+      0.015
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      pointer.y * 0.03,
-      0.03
+      targetX,
+      0.015
     );
   });
 
