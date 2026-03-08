@@ -2,10 +2,30 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const timeline = [
-  { year: "2025", title: "Cloud & DevOps Engineer (Student)", org: "Self-learning & Projects", desc: "Learning AWS, Docker, Kubernetes and CI/CD through hands-on cloud projects." },
-  { year: "2024", title: "Built Cloud Hosted Student Mgmt System", org: "Academic Project", desc: "Full stack application deployed on AWS EC2 with backend API and database." },
-  { year: "2023", title: "Started MSc IT", org: "Cloud & Application Development", desc: "Specialization in Cloud & Application Development." },
-  { year: "2022", title: "BSc IT Graduate", org: "University", desc: "Built networking and backend development projects." },
+  {
+    year: "2025",
+    title: "Cloud & DevOps Engineer",
+    org: "Self-learning & Real Projects",
+    desc: "Implementing GitOps workflows, building CI/CD pipelines with GitHub Actions, and deploying containerized apps on Kubernetes clusters.",
+  },
+  {
+    year: "2024",
+    title: "Deployed Full-Stack App on AWS",
+    org: "Academic Capstone Project",
+    desc: "Architected and deployed a Student Management System on EC2 with Nginx reverse proxy, Flask API, MySQL backend, and automated deployments.",
+  },
+  {
+    year: "2023",
+    title: "Started MSc IT — Cloud Specialization",
+    org: "Cloud & Application Development",
+    desc: "Deep dive into cloud architecture, IaC with Terraform, Docker containerization, and Kubernetes orchestration.",
+  },
+  {
+    year: "2022",
+    title: "BSc IT Graduate",
+    org: "University",
+    desc: "Built foundational skills in networking, Linux administration, backend development with Python/Flask, and database management.",
+  },
 ];
 
 export default function TimelineSection() {
@@ -44,11 +64,11 @@ export default function TimelineSection() {
               className={`relative flex items-start gap-8 mb-12 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
             >
               <div className="absolute left-[14px] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary glow-teal z-10" />
-              <div className={`ml-12 md:ml-0 md:w-1/2 glass p-5 hover:glow-border transition-all duration-500 ${i % 2 === 0 ? "md:mr-auto md:pr-8 md:text-right" : "md:ml-auto md:pl-8"}`}>
-                <span className="text-xs text-primary font-medium tracking-widest">{item.year}</span>
-                <h3 className="text-lg font-display font-bold text-foreground mt-1">{item.title}</h3>
-                <p className="text-sm text-primary/80 mt-0.5">{item.org}</p>
-                <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
+              <div className={`ml-12 md:ml-0 md:w-1/2 glass p-5 hover:glow-border transition-all duration-500 group ${i % 2 === 0 ? "md:mr-auto md:pr-8 md:text-right" : "md:ml-auto md:pl-8"}`}>
+                <span className="text-xs text-primary font-semibold tracking-widest">{item.year}</span>
+                <h3 className="text-lg font-display font-bold text-foreground mt-1 group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-sm text-primary/70 mt-0.5">{item.org}</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
               </div>
             </motion.div>
           ))}

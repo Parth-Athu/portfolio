@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const nodes = [
-  { id: "user", label: "User", x: 50, y: 50 },
-  { id: "lb", label: "Load Balancer", x: 200, y: 50 },
-  { id: "ec2a", label: "EC2 Instance A", x: 380, y: 20 },
-  { id: "ec2b", label: "EC2 Instance B", x: 380, y: 80 },
-  { id: "db", label: "RDS Database", x: 550, y: 50 },
+  { id: "user", label: "Users", x: 60, y: 55, tech: "Web & Mobile Clients", color: "#f59e0b" },
+  { id: "cdn", label: "CDN", x: 170, y: 55, tech: "CloudFront / Edge Cache", color: "#06b6d4" },
+  { id: "lb", label: "Load Balancer", x: 290, y: 55, tech: "Nginx / ALB — Round Robin", color: "#14b8a6" },
+  { id: "ec2a", label: "EC2 (A)", x: 410, y: 25, tech: "Flask API — Auto-scaling Group", color: "#8b5cf6" },
+  { id: "ec2b", label: "EC2 (B)", x: 410, y: 85, tech: "Flask API — Replica Instance", color: "#8b5cf6" },
+  { id: "db", label: "Database", x: 540, y: 55, tech: "MySQL / RDS — Multi-AZ", color: "#f43f5e" },
 ];
 
 const connections = [
-  { from: "user", to: "lb" },
+  { from: "user", to: "cdn" },
+  { from: "cdn", to: "lb" },
   { from: "lb", to: "ec2a" },
   { from: "lb", to: "ec2b" },
   { from: "ec2a", to: "db" },
@@ -17,6 +20,8 @@ const connections = [
 ];
 
 export default function CloudArchitecture() {
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+
   return (
     <section className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -38,30 +43,43 @@ export default function CloudArchitecture() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="glass p-8 max-w-3xl mx-auto overflow-hidden"
+          className="glass p-8 md:p-10 max-w-3xl mx-auto overflow-x-auto"
         >
-          <svg viewBox="0 0 620 110" className="w-full h-auto">
+          <svg viewBox="0 0 620 120" className="w-full h-auto min-w-[500px]">
+            <defs>
+              {nodes.map((node) => (
+                <filter key={`glow-${node.id}`} id={`glow-${node.id}`}>
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              ))}
+            </defs>
+
             {/* Connection lines */}
             {connections.map((conn, i) => {
               const from = nodes.find((n) => n.id === conn.from)!;
               const to = nodes.find((n) => n.id === conn.to)!;
+              const isHighlighted = hoveredNode === conn.from || hoveredNode === conn.to;
               return (
                 <g key={i}>
                   <line
-                    x1={from.x + 40}
+                    x1={from.x + 45}
                     y1={from.y}
-                    x2={to.x - 40}
+                    x2={to.x - 45}
                     y2={to.y}
-                    stroke="hsl(168, 80%, 50%)"
-                    strokeWidth="1"
-                    opacity={0.3}
+                    stroke={isHighlighted ? "#14b8a6" : "#14b8a640"}
+                    strokeWidth={isHighlighted ? 1.5 : 1}
+                    strokeDasharray={isHighlighted ? "none" : "4,4"}
+                    style={{ transition: "all 0.3s" }}
                   />
-                  {/* Animated data particle */}
-                  <circle r="3" fill="#14b8a6" opacity="0.8">
+                  <circle r={isHighlighted ? 4 : 3} fill="#14b8a6" opacity={isHighlighted ? 1 : 0.6}>
                     <animateMotion
-                      dur={`${2 + i * 0.5}s`}
+                      dur={`${1.5 + i * 0.3}s`}
                       repeatCount="indefinite"
-                      path={`M${from.x + 40},${from.y} L${to.x - 40},${to.y}`}
+                      path={`M${from.x + 45},${from.y} L${to.x - 45},${to.y}`}
                     />
                   </circle>
                 </g>
@@ -69,43 +87,73 @@ export default function CloudArchitecture() {
             })}
 
             {/* Nodes */}
-            {nodes.map((node, i) => (
-              <g key={node.id}>
-                <rect
-                  x={node.x - 40}
-                  y={node.y - 16}
-                  width="80"
-                  height="32"
-                  rx="8"
-                  fill="rgba(20, 184, 166, 0.1)"
-                  stroke="rgba(20, 184, 166, 0.3)"
-                  strokeWidth="1"
+            {nodes.map((node) => {
+              const isHovered = hoveredNode === node.id;
+              return (
+                <g
+                  key={node.id}
+                  onMouseEnter={() => setHoveredNode(node.id)}
+                  onMouseLeave={() => setHoveredNode(null)}
+                  style={{ cursor: "pointer" }}
+                  filter={isHovered ? `url(#glow-${node.id})` : undefined}
                 >
-                  <animate
-                    attributeName="stroke-opacity"
-                    values="0.3;0.7;0.3"
-                    dur="3s"
-                    begin={`${i * 0.3}s`}
-                    repeatCount="indefinite"
+                  <rect
+                    x={node.x - 42}
+                    y={node.y - 17}
+                    width="84"
+                    height="34"
+                    rx="8"
+                    fill={isHovered ? `${node.color}20` : `${node.color}10`}
+                    stroke={isHovered ? node.color : `${node.color}40`}
+                    strokeWidth={isHovered ? 1.5 : 1}
+                    style={{ transition: "all 0.3s" }}
                   />
-                </rect>
-                <text
-                  x={node.x}
-                  y={node.y + 4}
-                  textAnchor="middle"
-                  fill="#2dd4bf"
-                  fontSize="8"
-                  fontFamily="monospace"
-                  fontWeight="600"
-                >
-                  {node.label}
-                </text>
-              </g>
-            ))}
+                  <text
+                    x={node.x}
+                    y={node.y + 4}
+                    textAnchor="middle"
+                    fill={isHovered ? node.color : "#94a3b8"}
+                    fontSize="8"
+                    fontFamily="'Space Grotesk', monospace"
+                    fontWeight="700"
+                    style={{ transition: "fill 0.3s" }}
+                  >
+                    {node.label}
+                  </text>
+
+                  {/* Tooltip */}
+                  {isHovered && (
+                    <g>
+                      <rect
+                        x={node.x - 55}
+                        y={node.y - 40}
+                        width="110"
+                        height="20"
+                        rx="4"
+                        fill="#0a0a0a"
+                        stroke={`${node.color}60`}
+                        strokeWidth="0.5"
+                      />
+                      <text
+                        x={node.x}
+                        y={node.y - 26}
+                        textAnchor="middle"
+                        fill={node.color}
+                        fontSize="6.5"
+                        fontFamily="'Inter', sans-serif"
+                        fontWeight="500"
+                      >
+                        {node.tech}
+                      </text>
+                    </g>
+                  )}
+                </g>
+              );
+            })}
           </svg>
 
-          <p className="text-xs text-muted-foreground text-center mt-4">
-            AWS Cloud Architecture — Auto-scaling EC2 instances with RDS backend
+          <p className="text-xs text-muted-foreground text-center mt-6">
+            <span className="text-primary font-medium">AWS Cloud Architecture</span> — Auto-scaling EC2 with CDN, Load Balancing & Multi-AZ RDS
           </p>
         </motion.div>
       </div>
