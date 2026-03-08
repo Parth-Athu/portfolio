@@ -72,7 +72,30 @@ export default function TimelineSection() {
                   </div>
                   <h3 className="text-lg font-display font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-sm text-primary/70 mt-0.5">{item.org}</p>
-                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
+                   <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm font-semibold text-primary mt-3">CGPA: {item.cgpa}</p>
+
+                  {/* Academic Progress */}
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <p className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3">Academic Progress</p>
+                    <div className="space-y-2.5">
+                      {semesters.map((sem) => (
+                        <div key={sem.label} className="flex items-center gap-3">
+                          <span className="text-xs text-muted-foreground w-10 shrink-0">{sem.label}</span>
+                          <div className="flex-1 h-2 rounded-full bg-muted/50 overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${(sem.score / 10) * 100}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.8, ease: "easeOut" }}
+                              className="h-full rounded-full bg-primary"
+                            />
+                          </div>
+                          <span className="text-xs font-semibold text-foreground w-7 text-right">{sem.score}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </SpotlightCard>
               </div>
             </motion.div>
