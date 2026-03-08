@@ -64,11 +64,11 @@ function DigitalHead() {
       <mesh ref={outerRef} scale={1.15}>
         <icosahedronGeometry args={[0.8, 2]} />
         <meshStandardMaterial
-          color="#c084fc"
+          color="#a78bfa"
           wireframe
           transparent
-          opacity={0.3}
-          emissive="#a855f7"
+          opacity={0.25}
+          emissive="#8b5cf6"
           emissiveIntensity={0.3}
         />
       </mesh>
