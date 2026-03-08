@@ -151,8 +151,8 @@ export default function HackathonsSection() {
               <Camera className="w-4 h-4 text-primary" />
               <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Hackathon 2025 Memories</h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              {photos.map((photo, i) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {photos2025.map((photo, i) => (
                 <motion.button
                   key={i}
                   whileHover={{ scale: 1.05 }}
@@ -165,12 +165,33 @@ export default function HackathonsSection() {
             </div>
           </SpotlightCard>
         </motion.div>
-      </div>
 
-      {/* Certificate Modal */}
-      <AnimatePresence>
-        {viewCert && (
-          <motion.div
+        {/* Hackathon 2026 Photo Gallery */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-6 max-w-4xl mx-auto"
+        >
+          <SpotlightCard className="p-6">
+            <div className="flex items-center justify-center gap-2 mb-5">
+              <Camera className="w-4 h-4 text-primary" />
+              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Hackathon 2026 Memories</h3>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {photos2026.map((photo, i) => (
+                <motion.button
+                  key={i}
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => setViewCert(photo.src)}
+                  className="overflow-hidden rounded-xl aspect-square cursor-pointer"
+                >
+                  <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover hover:brightness-110 transition-all duration-300" />
+                </motion.button>
+              ))}
+            </div>
+          </SpotlightCard>
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
