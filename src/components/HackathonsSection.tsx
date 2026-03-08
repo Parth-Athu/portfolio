@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Users, X, Github, ExternalLink, Camera } from "lucide-react";
+import { Trophy, Users, X, Github, ExternalLink, Camera, ZoomIn, ZoomOut } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import hackathonCert from "@/assets/hackathon-certificate.png";
 
@@ -58,8 +58,57 @@ const hackathons = [
 
 export default function HackathonsSection() {
   const [viewCert, setViewCert] = useState<string | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0 });
+  const panStart = useRef({ x: 0, y: 0 });
 
-  const handleClose = useCallback(() => setViewCert(null), []);
+  const handleClose = useCallback(() => {
+    setViewCert(null);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, []);
+
+  const handleZoomIn = useCallback(() => setZoom((z) => Math.min(z + 0.5, 4)), []);
+  const handleZoomOut = useCallback(() => {
+    setZoom((z) => {
+      const newZoom = Math.max(z - 0.5, 1);
+      if (newZoom === 1) setPan({ x: 0, y: 0 });
+      return newZoom;
+    });
+  }, []);
+
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.stopPropagation();
+    if (e.deltaY < 0) {
+      setZoom((z) => Math.min(z + 0.25, 4));
+    } else {
+      setZoom((z) => {
+        const newZoom = Math.max(z - 0.25, 1);
+        if (newZoom === 1) setPan({ x: 0, y: 0 });
+        return newZoom;
+      });
+    }
+  }, []);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    if (zoom <= 1) return;
+    setIsDragging(true);
+    dragStart.current = { x: e.clientX, y: e.clientY };
+    panStart.current = { ...pan };
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  }, [zoom, pan]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isDragging) return;
+    setPan({
+      x: panStart.current.x + (e.clientX - dragStart.current.x),
+      y: panStart.current.y + (e.clientY - dragStart.current.y),
+    });
+  }, [isDragging]);
+
+  const handlePointerUp = useCallback(() => setIsDragging(false), []);
 
   useEffect(() => {
     if (!viewCert) return;
@@ -197,37 +246,74 @@ export default function HackathonsSection() {
         </motion.div>
       </div>
 
-      {/* Certificate Modal */}
+      {/* Image Modal with Zoom */}
       <AnimatePresence>
         {viewCert && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/85 backdrop-blur-sm"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-md"
             onClick={handleClose}
           >
+            {/* Controls */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.25 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ delay: 0.1 }}
+              className="absolute top-4 right-4 z-20 flex items-center gap-2"
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-[800px] rounded-2xl border border-border bg-card overflow-hidden shadow-[0_0_80px_hsl(var(--primary)/0.1)] relative"
             >
               <button
+                onClick={handleZoomOut}
+                disabled={zoom <= 1}
+                className="p-2.5 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:bg-secondary transition-colors disabled:opacity-30"
+              >
+                <ZoomOut className="w-4 h-4 text-muted-foreground" />
+              </button>
+              <span className="text-xs text-muted-foreground font-medium min-w-[3rem] text-center">
+                {Math.round(zoom * 100)}%
+              </span>
+              <button
+                onClick={handleZoomIn}
+                disabled={zoom >= 4}
+                className="p-2.5 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:bg-secondary transition-colors disabled:opacity-30"
+              >
+                <ZoomIn className="w-4 h-4 text-muted-foreground" />
+              </button>
+              <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:bg-secondary transition-colors"
+                className="p-2.5 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:bg-secondary transition-colors ml-2"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
               </button>
-              <div className="p-4">
-                <img
-                  src={viewCert}
-                  alt="Hackathon Certificate"
-                  className="w-full h-auto rounded-xl object-contain max-h-[70vh]"
-                />
-              </div>
+            </motion.div>
+
+            {/* Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.85 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              onWheel={handleWheel}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              className="w-full max-w-[900px] max-h-[85vh] flex items-center justify-center overflow-hidden rounded-2xl mx-4"
+              style={{ cursor: zoom > 1 ? (isDragging ? "grabbing" : "grab") : "default" }}
+            >
+              <img
+                src={viewCert}
+                alt="Hackathon photo"
+                draggable={false}
+                className="max-w-full max-h-[85vh] rounded-2xl object-contain select-none transition-transform duration-200 ease-out"
+                style={{
+                  transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+                }}
+              />
             </motion.div>
           </motion.div>
         )}
