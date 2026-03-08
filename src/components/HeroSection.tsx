@@ -68,7 +68,7 @@ export default function HeroSection() {
             className="flex items-center gap-3 flex-wrap"
           >
             <MagneticButton
-              href="#timeline"
+              href="#projects"
               className="inline-flex h-12 px-7 items-center rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300 glow-teal hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)]"
             >
               View Experience

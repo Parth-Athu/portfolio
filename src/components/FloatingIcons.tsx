@@ -1,40 +1,38 @@
 import { motion } from "framer-motion";
+import { Cloud, Container, Shield, GitBranch, RefreshCw } from "lucide-react";
 
 const icons = [
-  { name: "AWS", color: "#FF9900", symbol: "☁️" },
-  { name: "Docker", color: "#2496ED", symbol: "🐳" },
-  { name: "Kubernetes", color: "#326CE5", symbol: "⎈" },
-  { name: "Linux", color: "#FCC624", symbol: "🐧" },
-  { name: "Git", color: "#F05032", symbol: "" },
-  { name: "Terraform", color: "#7B42BC", symbol: "⬡" },
-  { name: "CI/CD", color: "#06B6D4", symbol: "⟳" },
+  { name: "AWS", color: "hsl(var(--primary))", Icon: Cloud },
+  { name: "Docker", color: "#2496ED", Icon: Container },
+  { name: "Kubernetes", color: "#326CE5", Icon: Shield },
+  { name: "Git", color: "#F05032", Icon: GitBranch },
+  { name: "CI/CD", color: "hsl(var(--glow-cyan))", Icon: RefreshCw },
 ];
 
 export default function FloatingIcons() {
-  const radius = 140;
+  const radius = 130;
 
   return (
     <div className="w-full h-full flex items-center justify-center relative">
       {/* Glow backdrop */}
-      <div className="absolute w-[300px] h-[300px] rounded-full bg-primary/10 blur-[80px]" />
-      <div className="absolute w-[200px] h-[200px] rounded-full bg-cyan/5 blur-[60px]" />
+      <div className="absolute w-[250px] h-[250px] rounded-full bg-primary/8 blur-[100px]" />
 
       {/* Center sphere */}
       <motion.div
-        className="absolute w-20 h-20 rounded-full border border-primary/30 bg-gradient-to-br from-primary/20 to-transparent backdrop-blur-sm shadow-[0_0_40px_hsl(var(--primary)/0.3)]"
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-24 h-24 rounded-full border border-primary/20 bg-gradient-to-br from-primary/15 to-transparent backdrop-blur-sm shadow-[0_0_60px_hsl(var(--primary)/0.2)]"
+        animate={{ scale: [1, 1.06, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute w-10 h-10 rounded-full bg-primary/30 shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
-        animate={{ scale: [1, 1.15, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-12 h-12 rounded-full bg-primary/20 shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Orbit ring */}
       <div
-        className="absolute rounded-full border border-primary/10"
-        style={{ width: radius * 2 + 40, height: radius * 2 + 40 }}
+        className="absolute rounded-full border border-primary/8"
+        style={{ width: radius * 2 + 20, height: radius * 2 + 20 }}
       />
 
       {/* Orbiting icons */}
@@ -42,31 +40,26 @@ export default function FloatingIcons() {
         className="absolute"
         style={{ width: radius * 2, height: radius * 2 }}
         animate={{ rotate: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
       >
         {icons.map((icon, i) => {
-          const angle = (i / icons.length) * Math.PI * 2;
+          const angle = (i / icons.length) * Math.PI * 2 - Math.PI / 2;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
 
           return (
             <motion.div
               key={icon.name}
-              className="absolute flex flex-col items-center gap-1"
+              className="absolute flex flex-col items-center gap-1.5"
               style={{
-                left: `calc(50% + ${x}px - 28px)`,
-                top: `calc(50% + ${y}px - 28px)`,
+                left: `calc(50% + ${x}px - 24px)`,
+                top: `calc(50% + ${y}px - 24px)`,
               }}
               animate={{ rotate: -360 }}
-              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             >
-              <div
-                className="w-14 h-14 rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition-transform duration-300"
-                style={{
-                  boxShadow: `0 0 20px ${icon.color}20, 0 4px 12px rgba(0,0,0,0.3)`,
-                }}
-              >
-                <span style={{ color: icon.color }}>{icon.symbol}</span>
+              <div className="w-12 h-12 rounded-xl border border-border/40 bg-card/70 backdrop-blur-sm flex items-center justify-center shadow-md">
+                <icon.Icon className="w-5 h-5" style={{ color: icon.color }} />
               </div>
               <span className="text-[10px] text-muted-foreground font-medium whitespace-nowrap">
                 {icon.name}

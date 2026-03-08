@@ -58,7 +58,7 @@ export default function Footer() {
             </p>
           </div>
           <p className="text-[10px] text-muted-foreground/60">
-            Built with React, TailwindCSS & Framer Motion
+            Built with React • Tailwind CSS • Framer Motion
           </p>
           <div className="flex items-center gap-2">
             <MagneticIcon href="https://www.linkedin.com/in/parth-athu" label="LinkedIn">
