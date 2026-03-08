@@ -1,14 +1,25 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin } from "lucide-react";
+import { Mail, Phone, Linkedin, Copy, Check } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
 const contactInfo = [
-  { Icon: Mail, label: "Email", value: "parthathu5@gmail.com", href: "mailto:parthathu5@gmail.com" },
-  { Icon: Phone, label: "Phone", value: "9909023108", href: "tel:9909023108" },
-  { Icon: Linkedin, label: "LinkedIn", value: "parth-athu", href: "https://www.linkedin.com/in/parth-athu" },
+  { Icon: Mail, label: "Email", value: "parthathu5@gmail.com", href: "mailto:parthathu5@gmail.com", copyable: true },
+  { Icon: Phone, label: "Phone", value: "9909023108", href: "tel:9909023108", copyable: true },
+  { Icon: Linkedin, label: "LinkedIn", value: "parth-athu", href: "https://www.linkedin.com/in/parth-athu", copyable: false },
 ];
 
 export default function ContactSection() {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handleCopy = (e: React.MouseEvent, value: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(value);
+    setCopied(value);
+    setTimeout(() => setCopied(null), 2000);
+  };
+
   return (
     <section id="contact" className="py-32 relative">
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
@@ -41,16 +52,31 @@ export default function ContactSection() {
               whileHover={{ scale: 1.03, y: -2 }}
               className="block"
             >
-              <SpotlightCard className="p-6 text-center group h-full">
+              <SpotlightCard className="p-6 text-center group h-full min-w-[220px]">
                 <div className="flex justify-center mb-4">
                   <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.2)] transition-all duration-500">
                     <item.Icon className="w-5 h-5 text-primary" />
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors break-all">
-                  {item.value}
-                </p>
+                <div className="flex items-center justify-center gap-1.5">
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors overflow-wrap-anywhere break-all">
+                    {item.value}
+                  </p>
+                  {item.copyable && (
+                    <button
+                      onClick={(e) => handleCopy(e, item.value)}
+                      className="shrink-0 p-1 rounded-md hover:bg-primary/10 transition-colors"
+                      aria-label={`Copy ${item.label}`}
+                    >
+                      {copied === item.value ? (
+                        <Check className="w-3.5 h-3.5 text-primary" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5 text-muted-foreground" />
+                      )}
+                    </button>
+                  )}
+                </div>
               </SpotlightCard>
             </motion.a>
           ))}
