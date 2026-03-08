@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, ExternalLink, X, Layers } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
 const projects = [
@@ -8,22 +9,45 @@ const projects = [
     desc: "Deployed a full-stack student management system on AWS EC2 with a Flask backend and MySQL database.",
     stack: ["AWS EC2", "Flask", "MySQL", "Nginx"],
     repoUrl: "https://github.com/parth-athu",
+    architecture: [
+      "User sends request → Nginx reverse proxy",
+      "Nginx routes to Flask backend (Gunicorn)",
+      "Flask connects to MySQL database",
+      "All hosted on a single AWS EC2 instance",
+      "Security Groups control inbound/outbound traffic",
+    ],
   },
   {
     title: "CI/CD Pipeline Automation",
     desc: "Created an automated CI/CD pipeline that builds, tests, and deploys applications using GitHub Actions and Docker.",
     stack: ["GitHub Actions", "Docker", "AWS"],
     repoUrl: "https://github.com/parth-athu",
+    architecture: [
+      "Developer pushes code to GitHub",
+      "GitHub Actions triggers workflow",
+      "Docker image is built and tested",
+      "Image pushed to container registry",
+      "Deployment to AWS environment",
+    ],
   },
   {
     title: "Dockerized Flask Application",
     desc: "Containerized a Python Flask application using Docker to ensure consistent development and deployment environments.",
     stack: ["Docker", "Python", "Flask"],
     repoUrl: "https://github.com/parth-athu",
+    architecture: [
+      "Dockerfile defines the application environment",
+      "Docker Compose manages multi-container setup",
+      "Flask app runs inside isolated container",
+      "Port mapping exposes the application",
+      "Volumes persist data across restarts",
+    ],
   },
 ];
 
 export default function ProjectsSection() {
+  const [archProject, setArchProject] = useState<(typeof projects)[0] | null>(null);
+
   return (
     <section id="projects" className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -68,21 +92,93 @@ export default function ProjectsSection() {
                       ))}
                     </div>
                   </div>
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all shrink-0"
-                  >
-                    <Github className="w-3.5 h-3.5" />
-                    GitHub Repo
-                  </a>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={() => setArchProject(project)}
+                      className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                    >
+                      <Layers className="w-3.5 h-3.5" />
+                      Architecture
+                    </button>
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-9 px-4 items-center gap-1.5 rounded-full border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </SpotlightCard>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Architecture Modal */}
+      <AnimatePresence>
+        {archProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+            onClick={() => setArchProject(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-[0_0_60px_hsl(var(--primary)/0.1)] relative"
+            >
+              <button
+                onClick={() => setArchProject(null)}
+                className="absolute top-4 right-4 p-1.5 rounded-lg hover:bg-secondary transition-colors"
+              >
+                <X className="w-4 h-4 text-muted-foreground" />
+              </button>
+
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Layers className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-base font-display font-bold text-foreground">{archProject.title}</h3>
+                  <p className="text-xs text-muted-foreground">Architecture Flow</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {archProject.architecture.map((step, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="flex flex-col items-center shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-bold text-primary">
+                        {i + 1}
+                      </div>
+                      {i < archProject.architecture.length - 1 && (
+                        <div className="w-px h-4 bg-border mt-1" />
+                      )}
+                    </div>
+                    <p className="text-sm text-foreground pt-1">{step}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-border">
+                {archProject.stack.map((s) => (
+                  <span key={s} className="text-xs px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 font-medium">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
