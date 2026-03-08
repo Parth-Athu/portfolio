@@ -1,23 +1,29 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Users, X } from "lucide-react";
+import { Trophy, Users, X, Github, ExternalLink } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 import hackathonCert from "@/assets/hackathon-certificate.png";
 
 const hackathons = [
   {
-    Icon: Users,
-    title: "Hackathon Participation",
-    desc: "Participated in 2 hackathons focused on technology innovation and team collaboration. Worked in teams to design and build solutions under time constraints.",
-    highlights: ["2 Hackathons", "Team Collaboration", "Problem Solving"],
-    certificate: null,
-  },
-  {
     Icon: Trophy,
     title: "1st Runner-Up – Hackathon 2025",
-    desc: "Secured 1st Runner-Up position in Hackathon 2025, an Inter-School Innovation and Coding Competition organized by JG University, School of Computing.",
+    desc: "Secured 1st Runner-Up position in Hackathon 2025, an Inter-School Innovation and Coding Competition organized by JG University, School of Computing. Built a Tribal Art Marketplace web app.",
     highlights: ["1st Runner-Up", "JG University", "Innovation & Coding"],
     certificate: hackathonCert,
+    liveUrl: "https://v0-tribal-art-marketplace.vercel.app",
+    repoUrl: "https://github.com/Parth-Athu/Techify-Hackathon-DesiRoots",
+    projectName: "DesiRoots – Tribal Art Marketplace",
+  },
+  {
+    Icon: Users,
+    title: "Hackathon 2026 Participant",
+    desc: "Participating in Hackathon 2026, continuing to build innovative solutions and strengthen problem-solving skills through competitive coding challenges.",
+    highlights: ["2026 Participant", "Team Collaboration", "Problem Solving"],
+    certificate: null,
+    liveUrl: null,
+    repoUrl: null,
+    projectName: null,
   },
 ];
 
@@ -78,15 +84,26 @@ export default function HackathonsSection() {
                     </span>
                   ))}
                 </div>
-                {item.certificate && (
-                  <div className="flex justify-center">
-                    <button
-                      onClick={() => setViewCert(item.certificate)}
-                      className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
-                    >
-                      <Trophy className="w-3 h-3" />
-                      View Certificate
-                    </button>
+                {(item.liveUrl || item.repoUrl || item.certificate) && (
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {item.liveUrl && (
+                      <a href={item.liveUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all">
+                        <ExternalLink className="w-3 h-3" />Live Demo
+                      </a>
+                    )}
+                    {item.repoUrl && (
+                      <a href={item.repoUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all">
+                        <Github className="w-3 h-3" />GitHub
+                      </a>
+                    )}
+                    {item.certificate && (
+                      <button onClick={() => setViewCert(item.certificate)}
+                        className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all">
+                        <Trophy className="w-3 h-3" />Certificate
+                      </button>
+                    )}
                   </div>
                 )}
               </SpotlightCard>
